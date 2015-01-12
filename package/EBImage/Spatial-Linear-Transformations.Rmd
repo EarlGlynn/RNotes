@@ -1,0 +1,56 @@
+---
+title: 'EBImage:  Spatial Linear Transformations'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+# Spatial Linear Transformations
+
+- affine
+- flip
+- flop
+- resize
+- rotate
+- translate
+
+```{r, fig.width=8, fig.height=1.75}
+par(mfrow=c(1,4))
+x <- readImage(system.file("images", "sample.png", package="EBImage"))
+display(x)
+
+display( flip(x) )
+display( flop(x) ) 
+display( resize(x, 128) )
+display( rotate(x, 30) )
+display( translate(x, c(120, -20)) )
+
+m <- matrix(c(0.6, 0.2, 0, -0.2, 0.3, 300), nrow=3)
+m
+display( affine(x, m) )
+```
+
+# Image Transposition
+
+```{r, fig.width=8, fig.height=1.75}
+par(mfrow=c(1,2))
+x <- readImage(system.file("images", "sample-color.png", package="EBImage"))
+y <- transpose(x)
+  
+display(x, title='Original')
+display(y, title='Transposed')
+
+## performing the transposition of an image twice should result in the original image
+z = transpose(y)
+identical(x, z)
+```
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

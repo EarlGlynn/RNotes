@@ -1,0 +1,82 @@
+---
+title: 'EBImage:  Image Display and I/O'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+# Image Display
+
+```{r, fig.width=4, fig.height=3}
+## Display a single image
+x <- readImage(system.file("images", "sample-color.png", package="EBImage"))[257:768,,]
+display(x, "Sample")
+
+## Display a thresholded sequence ...
+y <- readImage(system.file("images", "sample.png", package="EBImage"))
+yt <- list()
+for (t in seq(0.1, 5, len=9)) yt=c(yt, list(gblur(y, s=t)))
+yt <- combine(yt)
+
+## ... using the browser viewer ...
+display(yt, "Blurred images")
+display(yt, "Blurred images", all=TRUE)
+
+## ... or using R's build-in raster functions
+display(resize(yt, 256, 256), method = "raster", all = TRUE)
+
+## Display the last frame 
+display(yt, method = "raster", frame = numberOfFrames(yt, type = "render"))
+```
+
+# Image I/O
+
+## Read and display an image
+
+```{r, fig.width=4, fig.height=3}
+f <- system.file("images", "sample-color.png", package="EBImage")
+x <- readImage(f)
+display(x)
+```
+
+## Read and display a multi-frame TIFF
+
+```{r}
+y <- readImage(system.file("images", "nuclei.tif", package="EBImage"))
+display(y)
+display(y, all=TRUE)
+```
+
+## Read an image directly from a remote location by specifying its URL
+
+```{r, fig.width=4, fig.height=3}
+try({
+  im <- readImage("http://www-huber.embl.de/EBImage/ExampleImages/berlin.tif")
+  display(im, title = "Berlin Impressions", all=TRUE)
+})
+```
+
+## Convert a PNG file into JPEG
+
+```{r, fig.width=4, fig.height=3}
+tempfile <- tempfile("", , ".jpeg")
+writeImage(x, tempfile, quality = 85)
+cat("Converted '", f, "' into '", tempfile, "'.\n", sep="")
+```
+
+## Save a frame sequence
+
+```{r}
+files <- writeImage(y, tempfile("", , ".jpeg"), quality = 85)
+cat("Files created: ", files, sep="\n")
+```
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

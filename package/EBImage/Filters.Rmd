@@ -1,0 +1,72 @@
+---
+title: 'EBImage:  Filters and Filtering'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+# Filters
+
+## filter2:  2D Convolution Filter 
+
+Filters an image using the fast 2D FFT convolution product. 
+
+```{r}
+x <- readImage(system.file("images", "sample-color.png", package="EBImage"))
+display(x, title='Sample')
+```
+
+## Low-pass disc-shaped filter
+```{r}
+f <- makeBrush(21, shape='disc', step=FALSE)
+display(f, title='Disc filter')
+f <- f/sum(f)
+y <- filter2(x, f)
+display(y, title='Filtered image')
+```
+
+## High-pass Laplacian filter
+```{r}
+la <- matrix(1, nc=3, nr=3)
+la[2,2] <- -8
+la
+y <- filter2(x, la)
+display(y, title='Filtered image')
+```
+
+**The above image is not correct.  It will be fixed in the next version.**
+
+## gblur:  Low-pass Gaussian filter
+
+Filters an image with a low-pass Gaussian filter. 
+
+```{r}
+x <- readImage(system.file("images", "sample.png", package="EBImage"))
+display(x)
+
+y <- gblur(x, sigma=8)
+display(y, title='gblur(x, sigma=8)')
+```
+
+## medianFilter:  2D constant time median filtering
+
+Filters a 16-bit image using Perreault's modern constant time median filtering algorithm.
+
+Median filtering is useful as a smoothing technique, e.g. in the removal of speckling noise. 
+
+```{r}
+x <- readImage(system.file("images", "nuclei.tif", package="EBImage"))
+display(x, title='Nuclei', all=TRUE)
+y <- medianFilter(x, 5)  
+display(y, title='Filtered nuclei', all=TRUE)
+```
+
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

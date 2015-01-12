@@ -1,0 +1,312 @@
+---
+title: "Introduction to EBImage"
+author: "Earl F Glynn"
+output: pdf_document
+---
+
+This is an attempt to replicate *[Introduction to EBImage](http://www.bioconductor.org/packages/release/bioc/vignettes/EBImage/inst/doc/EBImage-introduction.pdf)* by Andrzej Oles et al, Dec. 3, 2014, using R markdown in RStudio.
+
+# 1  Reading, displaying and writing images
+
+The package *[EBImage](http://bioconductor.org/packages/release/bioc/html/EBImage.html)* is loaded by the following command.
+```{r}
+library("EBImage")
+```
+
+The function readImage is able to read images from files or URLs. Currently supported image formats are JPEG, PNG and TIFF1. (See the [RBioFormats](https://github.com/aoles/RBioFormats) package for support of a much wider range of formats.)
+```{r}
+f <- system.file("images", "sample.png", package="EBImage")
+img <- readImage(f)
+```
+
+Images can be displayed using the function display. Pixel intensities should range from 0 (black) to 1 (white).
+
+Color images or images with multiple frames can also be read with readImage.
+
+```{r}
+imgc = readImage(system.file("images", "sample-color.png", package="EBImage"))
+```
+
+```{r, fig.width=8, fig.height=3, fig.cap="Figure 1: img, imgc"}
+par(mfrow=c(1,2))
+display(img,  title="Figure 1:  img")
+display(imgc, title="Figure 1:  imgc")
+```
+
+```{r, fig.width=6, fig.cap="Figure 2: nuc"}
+nuc <- readImage(system.file('images', 'nuclei.tif', package='EBImage'))
+display(nuc, all=TRUE, title="Figure 2: nuc")
+```
+
+Images can be written with writeImage. The file format is deduced from the file name extension. The format need not be the same as the format of the file from which the image was read.
+
+```{r}
+writeImage(img, 'img.jpeg', quality=85)
+writeImage(imgc, 'imgc.jpeg', quality=85)
+```
+
+# 2  Image objects and matrices
+
+The package *EBImage* uses the class Image to store and process images. Images are stored as multi-dimensional arrays containing the pixel intensities. All *EBImage* functions are also able to work with matrices and arrays.
+
+```{r}
+print(img)
+```
+
+As matrices, images can be manipulated with all R mathematical operators. This includes + to control the brightness of an image, * to control the contrast of an image or ^ to control the gamma correction parameter.
+
+```{r}
+img1 <- img + 0.5
+img2 <- 3*img
+img3 <- (0.2 + img)^3
+```
+
+```{r, fig.width=8, fig.height=1.75, fig.cap="Figure 3: img, img1, img2, img3"}
+par(mfrow=c(1,4))
+display(img)
+display(img1)
+display(img2)
+display(img3)
+```
+
+Others operators include [ to crop images, < to threshold images or *t* to transpose images.
+
+```{r}
+img4 <- img[299:376, 224:301]
+img5 <- img > 0.5
+img6 <- t(img)
+print(median(img))
+```
+
+Images with multiple frames are created using *combine* which merges images.
+```{r}
+imgcomb <- combine(img, img*2, img*3, img*4)
+```
+
+```{r, fig.width=8, fig.height=3, fig.cap="Figure 4: img, img4, img5, img6"}
+par(mfrow=c(1,4))
+display(img)
+display(img4)
+display(img5)
+display(img6)
+```
+
+```{r, fig.width=8, fig.cap="Figure 5: imgcomb"}
+display(imgcomb, all=TRUE, title="Figure 5: imgcomb")
+```
+
+# 3  Spatial tranformations
+
+Specific spatial image transformations are done with the functions resize, rotate, translate and the functions flip and flop to reflect images.
+
+```{r}
+img7 <- rotate(img, 30)
+img8 <- translate(img, c(40, 70))
+img9 <- flip(img)
+```
+
+```{r, fig.width=8, fig.height=1.75, fig.cap="Figure 6: img, img7, img8, img9", echo=FALSE}
+par(mfrow=c(1,4))
+display(img)
+display(img7)
+display(img8)
+display(img9)
+```
+
+# 4  Color management 
+
+The class Image extends the base class array and uses the colormode slot to store how the color information of the multi-dimensional data should be handled.
+
+As an example, the color image imgc is a 512x512x3 array, with a colormode slot equals to Color. The object is understood as a color image by *EBImage* functions.
+
+```{r}
+print(imgc)
+```
+
+The function *colorMode* can access and change the value of the slot *colormode*, modifying the rendering mode of an image. In the next example, the Color image imgc with one frame is changed into a Grayscale image with 3 frames, corresponding to the red, green and blue channels. The function colorMode does not change the content of
+the image but changes only the way the image is rendered by *EBImage*.
+
+```{r, fig.width=8}
+colorMode(imgc) = Grayscale
+display(imgc, all=TRUE, title="Figure 7: imgc rendered as a Grayscale image with 3 frames (red channel, green channel, blue channel)")
+```
+
+The color mode of image imgc is reverted back to Color.
+```{r, fig.width=4, fig.height=3}
+colorMode(imgc) <- Color
+display(imgc, title="Figure 7:  imgc rendered as a Color image")
+```
+
+The function channel performs colorspace conversion and can convert Grayscale images into Color ones both ways and can extract color channels from Color images. Unlike colorMode, channel changes the pixel intensity values of the image. The function rgbImage is able to combine 3 Grayscale images into a Color one.
+
+```{r}
+imgk <- channel(img, 'rgb')
+imgk[236:276, 106:146, 1] <- 1
+imgk[236:276, 156:196, 2] <- 1
+imgk[236:276, 206:246, 3] <- 1
+imgb <- rgbImage(red=img, green=flip(img), blue=flop(img))
+```
+
+```{r, fig.width=8, fig.height=3, fig.cap="Figure 8: imgk, imgb"}
+par(mfrow=c(1,2))
+display(imgk, title="Figure 8: imgk")
+display(imgb, title="Figure 8:  imgb")
+```
+
+# 5  Image filtering
+
+Images can be linearly filtered using filter2. filter2 convolves the image with a matrix filter. Linear filtering is useful to perform low-pass filtering (to blur images, remove noise, ...) and high-pass filtering (to detect edges, sharpen images, ...). Various filter shapes can be generated using makeBrush.
+
+```{r}
+flo <- makeBrush(21, shape='disc', step=FALSE)^2
+flo <- flo/sum(flo)
+imgflo <- filter2(imgc, flo)
+
+fhi <- matrix(1, nc=3, nr=3)
+fhi[2,2] <- -8
+fhi
+imgfhi <- filter2(imgc, fhi)
+```
+
+```{r, fig.width=8, fig.height=2.75}
+par(mfrow=c(1,2))
+display(imgflo, title="Figure 9: Low-pass filtered imgflo")
+display(imgfhi, title="Figure 9: high-pass filtered imghi")
+```
+
+**Why doesn't image at the right above match the original?**
+
+# 6  Morphological operations  
+
+Binary images are images where the pixels of value 0 constitute the background and the other ones constitute the foreground. These images are subject to several non-linear mathematical operators called morphological operators, able to erode and dilate an image.
+
+```{r fig.width=4, fig.height=1.5, fig.cap="Figure 10: eierode, eidilat"}
+ei <- readImage(system.file('images', 'shapes.png', package='EBImage'))
+ei <- ei[110:512,1:130]
+display(ei, title="Figure 10: ei")
+
+kern <- makeBrush(5, shape='diamond')
+eierode <- erode(ei, kern)
+display(eierode, title="Figure 10: eierode")
+
+eidilat <- dilate(ei, kern)
+display(eidilat, title="Figure 10: eidilat")
+```
+
+# 7 Segmentation
+
+Segmentation consists in extracting objects from an image. The function bwlabel is a simple function able to extract every connected sets of pixels from an image and relabel these sets with a unique increasing integer. bwlabel can be used on binary images and is useful after thresholding.
+
+```{r, fig.width=8, fig.height=1.25, fig.cap="Figure 11: ei, eilabel/max(eilabel)"}
+eilabel <- bwlabel(ei)
+cat('Number of objects=', max(eilabel),'\n')
+par(mfrow=c(1,2))
+display(eilabel)
+display(eilabel/max(eilabel))
+```
+
+```{r, fig.width=8, fig.height=3.75, fig.cap="Figure 12: nuc[,,1], nuclabel/max(nuclabel)"}
+nuct <- nuc[,,1]>0.2
+nuclabel <- bwlabel(nuct)
+cat('Number of nuclei=', max(nuclabel),'\n')
+par(mfrow=c(1,2))
+display(nuc[,,1])
+display(nuclabel/max(nuclabel))
+```
+
+Since the images eilabel and nuclabel range from 0 to the number of object they contain (given by max(eilabel) and max(nucabel)), they have to be divided by these number before displaying, in order to fit the [0,1] range needed by display.
+
+The grayscale top-bottom gradient observable in eilabel and nuclabel is due to the way bwlabel labels the connected sets, from top-left to bottom-right.
+
+Adaptive thresholding consists in comparing the intensity of pixels with their neighbors, where the neighborhood is specified by a filter matrix. The function thresh performs a fast adaptive thresholding of an image with a rectangular window while the combination of filter2 and < allows a finer control. Adaptive thresholding allows a
+better segmentation when objects are close together.
+
+```{r, fig.width=8, fig.height=3.75, fig.cap="Figure 13: nuc[,,1], nuclabel2/max(nuclabel)"}
+nuct2 <- thresh(nuc[,,1], w=10, h=10, offset=0.05)
+kern <- makeBrush(5, shape='disc')
+nuct2 <- dilate(erode(nuct2, kern), kern)
+nuclabel2 <- bwlabel(nuct2)
+cat('Number of nuclei=', max(nuclabel2),'\n')
+par(mfrow=c(1,2))
+display(nuc[,,1])
+display(nuclabel2/max(nuclabel))
+```
+
+# 8  Object manipulation
+
+Objects, defined as sets of pixels with the same unique integer value can be outlined and painted using paintObjects.  Some holes are present in objects of nuclabel2 which can be filled using fillHull.
+
+```{r, fig.width=8, fig.height=3.75, fig.cap="Figure 14: nuch1, nuch2"}
+nucgray <- channel(nuc[,,1], 'rgb')
+nuch1 <- paintObjects(nuclabel2, nucgray, col='#ff00ff')
+nuclabel3 <- fillHull(nuclabel2)
+nuch2 <- paintObjects(nuclabel3, nucgray, col='#ff00ff')
+par(mfrow=c(1,2))
+display(nuch1)
+display(nuch2)
+```
+
+A broad variety of objects features (basic, image moments, shape, Haralick features) can be computed using computeFeatures. In particular, object coordinates are computed with the function computeFeatures.moment.
+
+```{r}
+xy <- computeFeatures.moment(nuclabel3)[, c("m.cx", "m.cy")]
+dim(xy)
+head(xy)
+```
+
+# 9  Cell segmentation example
+
+This is a complete example of segmentation of cells (nucleus + cell bodies) using the functions described before and the function propagate, able to perform Voronoi-based region segmentation.  
+
+Images of nuclei and cell bodies are first loaded:
+
+```{r}
+nuc <- readImage(system.file('images', 'nuclei.tif', package='EBImage'))
+display(nuc, all=TRUE, title="Figure 15: nuc")
+```
+
+```{r}
+cel <- readImage(system.file('images', 'cells.tif',  package='EBImage'))
+display(cel, all=TRUE, title="Figure 16: cel")
+```
+
+```{r}
+img <- rgbImage(green=1.5*cel, blue=nuc)
+display(img, all=TRUE, title="Figure 17: img")
+```
+
+Nuclei are first segmented using thresh, fillHull, bwlabel and opening, which is an erosion followed by a dilatation.
+
+```{r}
+nmask <- thresh(nuc, w=10, h=10, offset=0.05)
+nmask <- opening(nmask, makeBrush(5, shape='disc'))
+nmask <- fillHull(nmask)
+nmask <- bwlabel(nmask)
+```
+
+Cell bodies are segmented using propagate.
+
+```{r}
+display(nmask/max(nmask), all=TRUE, title="Figure 18: nmask/max(nmask)")
+```
+
+```{r}
+ctmask <- opening(cel>0.1, makeBrush(5, shape='disc'))
+cmask <- propagate(cel, seeds=nmask, mask=ctmask)
+display(cmask/max(cmask), all=TRUE, title="Figure 19: cmask/max(cmask)")
+```
+
+Cells are outlined using paintObjects.
+
+```{r}
+res <- paintObjects(cmask, img, col='#ff00ff')
+res <- paintObjects(nmask, res, col='#ffff00')
+display(res, all=TRUE, title="Figure 20: Final segmentation res")
+```
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

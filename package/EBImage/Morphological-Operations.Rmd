@@ -1,0 +1,71 @@
+---
+title: 'EBImage:  Morphological Operations'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+# Morphological Operations
+
+- blackTopHatGreyScale
+- closing
+- closingGreyScale
+- dilate
+- dilateGreyScale
+- erode
+- erodeGreyScale
+- makeBrush
+- opening
+- openingGreyScale
+- selfcomplementaryTopHatGreyScale
+- whiteTopHatGreyScale   
+
+## Example
+
+```{r, fig.width=8, fig.height=2}
+par(mfrow=c(1,5))
+x <- readImage(system.file("images", "shapes.png", package="EBImage"))
+kern <- makeBrush(5, shape='diamond')  
+  
+display(x)
+display(kern, title='Structuring element')
+display(erode(x, kern), title='Erosion of x')
+display(dilate(x, kern), title='Dilatation of x')
+```
+
+## makeBrush
+```{r, fig.width=8, fig.height=2.5}
+par(mfrow=c(1,3))
+display(makeBrush(99, shape='diamond'))
+display(makeBrush(99, shape='disc', step=FALSE))
+display(2000*makeBrush(99, shape='Gaussian', sigma=10))
+```
+
+## Example 2
+
+From *[Introduction to EBImage](http://www.bioconductor.org/packages/release/bioc/vignettes/EBImage/inst/doc/EBImage-introduction.pdf)* by Andrzej Oles et al, Dec. 3, 2014.
+
+Binary images are images where the pixels of value 0 constitute the background and the other ones constitute the foreground. These images are subject to several non-linear mathematical operators called morphological operators, able to erode and dilate an image.
+
+```{r fig.width=4, fig.height=1.5, fig.cap="eierode, eidilat"}
+ei <- readImage(system.file('images', 'shapes.png', package='EBImage'))
+ei <- ei[110:512,1:130]
+display(ei, title="Figure 10: ei")
+
+kern <- makeBrush(5, shape='diamond')
+eierode <- erode(ei, kern)
+display(eierode, title="eierode")
+
+eidilat <- dilate(ei, kern)
+display(eidilat, title="eidilat")
+```
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

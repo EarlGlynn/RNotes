@@ -1,0 +1,70 @@
+---
+title: 'EBImage:  Image Class'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+# Image class
+
+- [-method
+- as.array.Image
+- as.Image
+- as.raster.Image
+- Color
+- colorMode
+- colormode
+- colorMode<-
+- getFrame
+- getNumberOfFrames
+- Grayscale
+- hist-method
+- Image
+- Image-class
+- imageData
+- imageData<-
+- image-method
+- is.Image
+- Math2-method
+- median.Image
+- numberOfFrames
+- Ops-method
+- print.Image
+- quantile.Image
+- show-method
+
+```{r, fig.width=8, fig.height=1.75}
+par(mfrow=c(1,4))
+s1 <- exp(12i*pi*seq(-1, 1, length=300)^2)
+y <- Image(outer(Im(s1), Re(s1)))
+display(normalize(y))
+
+set.seed(17)
+x <- Image(rnorm(300*300*3),dim=c(300,300,3), colormode='Color')
+display(x)
+
+w <- matrix(seq(0, 1, len=300), nc=300, nr=300)
+m <- abind::abind(w, t(w), along=3)
+z <- Image(m, colormode='Color')
+display(normalize(z))
+
+y <- Image(c('red', 'violet', '#ff51a5', 'yellow'), dim=c(71, 71))
+display(y)
+
+## colorMode example
+x <- readImage(system.file('images', 'nuclei.tif', package='EBImage'))
+x <- x[,,1:3]
+display(x, title='Cell nuclei')
+colorMode(x) <- Color
+display(x, title='Cell nuclei in RGB')
+```
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

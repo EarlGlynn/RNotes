@@ -1,0 +1,77 @@
+---
+title: 'EBImage:  Image Object Features'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+# Image Object Features
+
+- computeFeatures
+- computeFeatures.basic
+- computeFeatures.haralick
+- computeFeatures.moment
+- computeFeatures.shape
+- standardExpandRef                 
+
+## load and segment nucleus
+
+```{r, fig.width=8}
+par(mfrow=c(1,2))
+y <- readImage(system.file("images", "nuclei.tif", package="EBImage"))[,,1]
+x <- thresh(y, 10, 10, 0.05)
+x <- opening(x, makeBrush(5, shape='disc'))
+x <- bwlabel(x)
+
+display(y, title="Cell nuclei")
+display(x, title="Segmented nuclei")
+```
+
+## compute shape features
+
+```{r, fig.width=8}
+fts <- computeFeatures.shape(x)
+str(fts)
+fts
+```
+
+**Put heatmap of correlations here.**
+
+Features computed by *computeFeatures.shape* are prefixed with "s." and all are measured in pixels.
+
+## compute features
+```{r, fig.width=8}
+ft <- computeFeatures(x, y, xname="nucleus")
+cat("median features are:\n")
+apply(ft, 2, median)
+```
+
+The function *computeFeatures.basic* computes spatial-independent statistics on pixel intensities that have a "b." prefix:  b.mean, b.sd, b.mad, b.q*.  Intensity values range from 0.0 to 1.0. 
+
+The function *computeFeatures.moment* computes features related to object image moments, which can be computed with or without reference intensities, and have a prefix "m.":  
+
+- center of mass: m.cx, m.cy [pixels]
+- elliptical fit major axis: m.majoraxis [pixels]
+- elliptical eccentricity: m.eccentricity [dimensionless] (0=circle, 1=straight line)
+- object angle [radians]:  m.theta
+
+The function *computeFeatures.haralick* computes features that quantify pixel texture. Features are named according to Haralick's original paper, [Textural Features for Image Classification](http://www.haralick.org/journals/TexturalFeatures.pdf). Haralick texture features have a prefix "h.".
+
+Texture features in EBImage are calculated according to a Gray-Level Co-occurrence Matrix (GLCM) using the mean intensity of the pixel’s 4 neighboring pixels (0˚, 45˚, 90˚, and 135˚) according to [Aleksi Räsänen et al](https://jyx.jyu.fi/dspace/bitstream/handle/123456789/43899/uvaikkariobiaii.pdf?sequence=1): *The GLCM features estimate different features of pixel brightness value combinations from the neighboring pixels. Overall, 13 GLCM features given by Haralick et al. (1973) were calculated: angular second moment (asm), contrast (con), correlation (cor), variance (var), inverse difference moment (idm), sum average (sav), sum variance (sva), sum entropy (sen), entropy (ent), difference variance (dva), difference entropy (den), and two measures of correlation (f12 and f13). For the GLCM calculations, the pixel brightness values were quantized to 16 gray levels using equal intervals.*  
+
+
+## compute feature properties
+```{r, fig.width=8}
+ftp <- computeFeatures(x, y, properties=TRUE, xname="nucleus")
+ftp
+```
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  
