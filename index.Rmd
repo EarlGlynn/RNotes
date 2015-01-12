@@ -1,0 +1,44 @@
+---
+title: "R Notes"
+author: "Earl F Glynn"
+---
+
+** Under Construction **
+
+## Packages
+
+### EBImage
+
+[Intro to EBImage](package/EBImage/Intro-to-EBImage.html)
+
+* [Color](package/EBImage/Color.html)
+
+* [Features](package/EBImage/Features.html)
+
+    + Basic Features
+    + [Haralick Textural Features](package/EBImage/Haralick-Textural-Features.html)
+    + Moment Features
+    + Shape Features
+  
+* [Filters](package/EBImage/Filters.html)
+  
+* [Image Class](package/EBImage/Image-Class.html)
+
+* [Image Display and I/O](package/EBImage/Image-Display-IO.html)
+
+* [Morphological Operations](package/EBImage/Morphological-Operations.html)
+
+* [Propagate](package/EBImage/Propagate.html)
+
+* [Transformations](package/EBImage/Spatial-Linear-Transformations.html) (spatial, linear, ...)
+
+
+
+
+
+
+
+
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`                  
