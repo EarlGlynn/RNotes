@@ -1,5 +1,5 @@
 ---
-title: 'RImage:  Color'
+title: 'EBImage:  Color'
 author: "Earl F Glynn"
 output: html_document
 ---

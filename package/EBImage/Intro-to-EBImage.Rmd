@@ -174,8 +174,6 @@ display(imgflo, title="Figure 9: Low-pass filtered imgflo")
 display(imgfhi, title="Figure 9: high-pass filtered imghi")
 ```
 
-**Why doesn't image at the right above match the original?**
-
 # 6  Morphological operations  
 
 Binary images are images where the pixels of value 0 constitute the background and the other ones constitute the foreground. These images are subject to several non-linear mathematical operators called morphological operators, able to erode and dilate an image.

@@ -36,8 +36,6 @@ y <- filter2(x, la)
 display(y, title='Filtered image')
 ```
 
-**The above image is not correct.  It will be fixed in the next version.**
-
 ## gblur:  Low-pass Gaussian filter
 
 Filters an image with a low-pass Gaussian filter. 

@@ -1,0 +1,58 @@
+---
+title: 'EBImage:  Binary segmentation'
+author: "Earl F Glynn"
+output: html_document
+---
+
+
+```{r}
+library(EBImage)
+```
+
+## simple example
+```{r, fig.width=8, fig.height=2}
+x = readImage(system.file('images', 'shapes.png', package='EBImage'))
+x = x[110:512,1:130]
+display(x, title='Binary')
+```
+
+```{r, fig.width=8, fig.height=2}
+y = bwlabel(x)
+display(normalize(y), title='Segmented', all=TRUE)
+```
+
+## read nuclei images
+```{r, fig.width=8}
+x = readImage(system.file('images', 'nuclei.tif', package='EBImage'))
+display(x, all=TRUE)
+```
+
+## computes binary mask
+```{r, fig.width=8}
+y = thresh(x, 10, 10, 0.05)
+y = opening(y, makeBrush(5, shape='disc'))
+display(y, title='Cell nuclei binary mask', all=TRUE)
+```
+
+## bwlabel
+```{r, fig.width=8}
+z = bwlabel(y)
+display(normalize(z), title='Cell nuclei', all=TRUE)
+nbnuclei = apply(z, 3, max)
+cat('Number of nuclei=', paste(nbnuclei, collapse=','),'\n')
+```
+
+## recolor nuclei in colors
+```{r, fig.width=8}
+cols = c('black', sample(rainbow(max(z))))
+zrainbow = Image(cols[1+z], dim=dim(z))
+display(zrainbow, title='Cell nuclei (recolored)', all=TRUE)
+```
+
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  
