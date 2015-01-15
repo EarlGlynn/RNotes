@@ -28,13 +28,17 @@ author: "Earl F Glynn"
 
 * [Image Display and I/O](package/EBImage/Image-Display-IO.html)
 
+* [Intensity values linear scaling](package/EBImage/Intensity-values-linear-scaling.html)
+
 * [Morphological Operations](package/EBImage/Morphological-Operations.html)
 
 * [Propagate](package/EBImage/Propagate.html)
 
 * [Thresholding](package/EBImage/Thresholding.html)
 
-* [Transformations](package/EBImage/Spatial-Linear-Transformations.html) (spatial, linear, ...)
+* [Transformations](package/EBImage/Spatial-Linear-Transformations.html) (spatial linear, transpose, ...)
+
+* [Watershed transformation and watershed based object detection](package/EBImage/Watershed.html)
 
 
 

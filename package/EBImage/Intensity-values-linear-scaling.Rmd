@@ -1,0 +1,37 @@
+---
+title: 'EBImage:  Intensity values linear scaling'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+**normalize** performs linear interpolation of the intensity values of an image to the specified range.
+
+# Original
+
+```{r, fig.width=6, fig.height=2}
+x <- readImage(system.file('images', 'shapes.png', package='EBImage'))
+x <- x[110:512,1:130]
+y <- bwlabel(x)
+display(x, title='Original')
+```
+
+# Normalized
+
+```{r, fig.width=6, fig.height=2}
+print(range(y))
+y <- normalize(y)
+print(range(y))
+display(y, title='Segmented')
+```
+
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

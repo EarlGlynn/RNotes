@@ -1,5 +1,5 @@
 ---
-title: 'EBImage:  Spatial Linear Transformations'
+title: 'EBImage:  Spatial Linear and Other Transformations'
 author: "Earl F Glynn"
 output: html_document
 ---
@@ -26,11 +26,12 @@ display( flip(x) )
 display( flop(x) ) 
 display( resize(x, 128) )
 display( rotate(x, 30) )
+display( rotate(x,-60, bg="white") )
 display( translate(x, c(120, -20)) )
 
 m <- matrix(c(0.6, 0.2, 0, -0.2, 0.3, 300), nrow=3)
 m
-display( affine(x, m) )
+display( affine(x, m, bg="white") )
 ```
 
 # Image Transposition
