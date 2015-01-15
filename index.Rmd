@@ -26,6 +26,8 @@ author: "Earl F Glynn"
   
 * [Image Class](package/EBImage/Image-Class.html)
 
+* [Image Stack](package/EBImage/Image-Stack.html)
+
 * [Image Display and I/O](package/EBImage/Image-Display-IO.html)
 
 * [Intensity values linear scaling](package/EBImage/Intensity-values-linear-scaling.html)
@@ -35,6 +37,8 @@ author: "Earl F Glynn"
 * [Propagate](package/EBImage/Propagate.html)
 
 * [Thresholding](package/EBImage/Thresholding.html)
+
+* [Tiling / Untiling](package/EBImage/Tile-Untile.html)
 
 * [Transformations](package/EBImage/Spatial-Linear-Transformations.html) (spatial linear, transpose, ...)
 

@@ -1,0 +1,65 @@
+---
+title: 'EBImage:  Image Stack'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+Places detected objects into an image stack. 
+
+## Simple example
+
+```{r, fig.width=6, fig.height=2}
+x <- readImage(system.file('images', 'shapes.png', package='EBImage'))
+x <- x[110:512,1:130]
+y <- bwlabel(x)
+display(normalize(y), title='Objects')
+```
+```{r, fig.width=6}
+z <- stackObjects(y, normalize(y))
+display(z, title='Stacked objects', all=TRUE)
+```
+
+## Load images
+```{r, fig.width=6}
+nuc <- readImage(system.file('images', 'nuclei.tif', package='EBImage'))
+cel <- readImage(system.file('images', 'cells.tif', package='EBImage'))
+img <- rgbImage(green=cel, blue=nuc)
+display(img, title='Cells', all=TRUE)
+```
+
+## Segment nuclei
+```{r, fig.width=6}
+nmask <- thresh(nuc, 10, 10, 0.05)
+nmask <- opening(nmask, makeBrush(5, shape='disc'))
+nmask <- fillHull(bwlabel(nmask))
+```
+
+## Segment cells, using propagate and nuclei as 'seeds'
+```{r, fig.width=6}
+ctmask <- opening(cel>0.1, makeBrush(5, shape='disc'))
+cmask <- propagate(cel, nmask, ctmask)
+```
+
+## Using paintObjects to highlight objects
+```{r, fig.width=6}
+res <- paintObjects(cmask, img, col='#ff00ff')
+res <- paintObjects(nmask, res, col='#ffff00')
+display(res, title='Segmented cells', all=TRUE)
+```
+
+## Stacked cells
+```{r, fig.width=8, fig.height=8}
+st <- stackObjects(cmask, img)
+display(st, title='Stacked objects', all=TRUE)
+```
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  
