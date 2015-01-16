@@ -57,6 +57,8 @@ st <- stackObjects(cmask, img)
 display(st, title='Stacked objects', all=TRUE)
 ```
 
+Related:  Slides 13-17 in Wolfgang Huber's presentation [Machine learning in high-throughput screening and automated phenotyping](http://mlpm.eu/static/media/uploads/mlpm13_slides_huber01.pdf) [~35 MB].
+
 ```{r}
 packageVersion("EBImage")
 ```

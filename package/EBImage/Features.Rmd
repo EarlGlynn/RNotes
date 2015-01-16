@@ -62,12 +62,13 @@ The function *computeFeatures.haralick* computes features that quantify pixel te
 
 Texture features in EBImage are calculated according to a Gray-Level Co-occurrence Matrix (GLCM) using the mean intensity of the pixel’s 4 neighboring pixels (0˚, 45˚, 90˚, and 135˚) according to [Aleksi Räsänen et al](https://jyx.jyu.fi/dspace/bitstream/handle/123456789/43899/uvaikkariobiaii.pdf?sequence=1): *The GLCM features estimate different features of pixel brightness value combinations from the neighboring pixels. Overall, 13 GLCM features given by Haralick et al. (1973) were calculated: angular second moment (asm), contrast (con), correlation (cor), variance (var), inverse difference moment (idm), sum average (sav), sum variance (sva), sum entropy (sen), entropy (ent), difference variance (dva), difference entropy (den), and two measures of correlation (f12 and f13). For the GLCM calculations, the pixel brightness values were quantized to 16 gray levels using equal intervals.*  
 
-
 ## compute feature properties
 ```{r, fig.width=8}
 ftp <- computeFeatures(x, y, properties=TRUE, xname="nucleus")
 ftp
 ```
+
+Related:  Slides 13-22 in Wolfgang Huber's presentation [Machine learning in high-throughput screening and automated phenotyping](http://mlpm.eu/static/media/uploads/mlpm13_slides_huber01.pdf) [~35 MB].
 
 ```{r}
 packageVersion("EBImage")
