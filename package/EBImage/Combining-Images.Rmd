@@ -1,0 +1,36 @@
+---
+title: 'EBImage:  Combining Images'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+*combine* merges images to create image sequences.
+
+The function *combine* merges multi-dimensional arrays along the dimension depending on the color mode of image x, which is the first image specified. If x is a *Grayscale* image or an array, image objects are combined along the third dimension, whereas when x is a *Color* image they are combined along the forth dimension, leaving room on the third dimension for color channels.  [from **?combine** help]
+
+## Combination of color images
+
+### Image, Flip, Flop
+```{r, fig.width=6}
+img <- readImage(system.file("images", "sample-color.png", package="EBImage"))[257:768,,]
+x <- combine(img, flip(img), flop(img))
+display(x, all=TRUE)
+```
+
+## Blurred images
+
+### Sequence 
+```{r, fig.width=6}
+x <- resize(img, 128, 128)
+xt <- list()
+for (t in seq(0.1, 5, len=9)) xt=c(xt, list(gblur(x, s=t)))
+xt <- combine(xt)
+display(xt, title='Blurred images', all=TRUE)
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

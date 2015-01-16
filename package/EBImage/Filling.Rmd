@@ -1,0 +1,43 @@
+---
+title: 'EBImage:  Filling Holes and Regions'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+## Filling Holes
+
+```{r, fig.width=8}
+x <- readImage(system.file('images', 'nuclei.tif', package='EBImage'))
+display(x, all=TRUE)
+
+y <- thresh(x, 10, 10, 0.05)
+display(y, title='Cell nuclei', all=TRUE)
+
+y <- fillHull(y)
+display(y, title='Cell nuclei without holes', all=TRUE)
+```
+
+
+## Filling Regions
+
+```{r, fig.width=8}
+x <- readImage(system.file("images", "shapes.png", package="EBImage"))
+y <- floodFill(x, c(67, 146), 0.5)
+display(y)
+
+y <- channel(y, 'rgb')
+y <- floodFill(y, c(48, 78), 'red')
+y <- floodFill(y, c(156, 52), 'orange')  
+display(y)
+
+x <- readImage(system.file("images", "sample.png", package="EBImage"))
+y <- floodFill(x, c(226, 121), 1, tolerance=0.1)
+display(y)
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

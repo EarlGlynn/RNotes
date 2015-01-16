@@ -15,6 +15,8 @@ author: "Earl F Glynn"
 
 * [Color](package/EBImage/Color.html)
 
+* [Combining Images](package/EBImage/Combining-Images.html)
+
 * [Features](package/EBImage/Features.html)
 
     + Basic Features
@@ -23,6 +25,10 @@ author: "Earl F Glynn"
     + Shape Features
   
 * [Filters](package/EBImage/Filters.html)
+
+* [Filling Holes and Regions](package/EBImage/Filling.html)
+
+* [Histogram Equalization](package/EBImage/Histogram-Equalization.html)
   
 * [Image Class](package/EBImage/Image-Class.html)
 

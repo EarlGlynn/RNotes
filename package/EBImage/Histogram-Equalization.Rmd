@@ -1,0 +1,54 @@
+---
+title: 'EBImage:  Histogram Equalization'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+Equalize the image histogram to a specified range and number of levels. 
+
+Individual channels of color images and frames of image stacks are equalized separately, which results in a high-contrast image, but usually with color distortion. 
+
+## Grayscale example
+
+```{r}
+x = readImage(system.file('images', 'cells.tif', package='EBImage'))
+display(x, all=TRUE)
+```
+
+```{r, fig.height=4}
+hist(x)
+grid()
+y = equalize(x)
+hist(y)
+grid()
+```
+
+```{r}
+display(y, title='Equalized Grayscale Image', all=TRUE)
+```
+
+## Color example
+
+```{r, fig.width=6}
+x = readImage(system.file('images', 'sample-color.png', package='EBImage'))
+display(x)
+```
+
+```{r, fig.height=4}
+hist(x)
+grid()
+y = equalize(x)
+hist(y)
+grid()
+```
+
+```{r, fig.width=6}
+display(y, title='Equalized Grayscale Image')
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  
