@@ -1,0 +1,24 @@
+---
+title: 'EBImage:  Oriented Contours'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+Computes the oriented contour of objects.
+
+```{r}
+x <- readImage(system.file("images", "shapes.png", package="EBImage"))
+x <- x[1:120,50:120]
+display(x)
+
+oc = ocontour(x)
+plot(oc[[1]], type='l')
+points(oc[[1]], col=2)
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")` 

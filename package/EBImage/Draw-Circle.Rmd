@@ -1,0 +1,28 @@
+---
+title: 'EBImage:  drawCircle'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+## Simple white circle
+
+```{r, fig.width=4, fig.height=4}
+x <- matrix(0, nrow=300, ncol=300)
+y <- drawCircle(x, 100, 200, 47, col=1)
+display(y)
+```
+  
+## Simple filled yellow circle
+
+```{r, fig.width=4, fig.height=4}
+x <- channel(y, 'rgb')
+y <- drawCircle(x, 200, 140, 57, col='yellow', fill=TRUE)
+display(y)
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")` 

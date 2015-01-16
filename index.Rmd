@@ -17,6 +17,8 @@ author: "Earl F Glynn"
 
 * [Combining Images](package/EBImage/Combining-Images.html)
 
+* [Draw Circle](package/EBImage/Draw-Circle.html)
+
 * [Features](package/EBImage/Features.html)
 
     + Basic Features
@@ -39,6 +41,8 @@ author: "Earl F Glynn"
 * [Intensity values linear scaling](package/EBImage/Intensity-values-linear-scaling.html)
 
 * [Morphological Operations](package/EBImage/Morphological-Operations.html)
+
+* [Oriented Contours](package/EBImage/Oriented-Contours.html)
 
 * [Propagate](package/EBImage/Propagate.html)
 
