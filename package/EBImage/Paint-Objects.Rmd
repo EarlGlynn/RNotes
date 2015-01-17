@@ -1,0 +1,47 @@
+---
+title: 'EBImage:  Paint Objects in Images'
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+## Load Images
+
+```{r}
+nuc <- readImage(system.file('images', 'nuclei.tif', package='EBImage'))
+cel <- readImage(system.file('images', 'cells.tif',  package='EBImage'))
+img <- rgbImage(green=cel, blue=nuc)
+display(img, title='Cells', all=TRUE)
+```
+
+## Segment Nuclei
+
+```{r}
+nmask <- thresh(nuc, 10, 10, 0.05)
+nmask <- opening(nmask, makeBrush(5, shape='disc'))
+nmask <- fillHull(nmask)
+nmask <- bwlabel(nmask)
+display(normalize(nmask), title='Cell nuclei mask', all=TRUE)
+```
+
+## Segment Cells:  use propagate and nuclei as 'seeds'
+
+```{r}
+ctmask <- opening(cel>0.1, makeBrush(5, shape='disc'))
+cmask <- propagate(cel, nmask, ctmask)
+display(normalize(cmask), title='Cell mask', all=TRUE)
+```
+
+## Use paintObjects to highlight objects
+
+```{r}
+res <- paintObjects(cmask, img, col='#ff00ff')
+res <- paintObjects(nmask, res, col='#ffff00')
+display(res, title='Segmented cells', all=TRUE)
+```                                                             
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")` 

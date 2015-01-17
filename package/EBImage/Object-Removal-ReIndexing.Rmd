@@ -1,0 +1,62 @@
+---
+title: "EBImage:  Object Removing and Re-indexing"
+author: "Earl F Glynn"
+output: html_document
+---
+
+```{r}
+library(EBImage)
+```
+
+## Make objects
+
+```{r}
+x <- readImage(system.file('images', 'shapes.png', package='EBImage'))
+x <- x[110:512,1:130]
+y <- bwlabel(x)
+```
+
+## Number of objects found
+
+```{r, fig.width=6, fig.height=2}
+max(y)
+display(normalize(y), title='Objects')
+```
+
+## Remove every second letter
+
+```{r, fig.width=6, fig.height=2}
+objects <- list( seq.int(from=2, to=max(y), by=2),
+                 seq.int(from=1, to=max(y), by=2)
+               )
+z <- rmObjects(combine(y, y), objects)
+display(normalize(z), title='Object removal')
+```
+
+## Number of objects left in each image
+
+```{r}
+apply(z, 3, max)
+```
+
+## Remove objects without re-enumerating
+
+```{r}
+z <- rmObjects(y, objects, reenumerate = FALSE)
+```
+
+## Labels of objects remaining
+
+```{r}
+unique(as.vector(z))[-1L]
+```
+
+## Re-index objects
+
+```{r}
+z <- reenumerate(z)
+unique(as.vector(z))[-1L]
+```                                    
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")` 

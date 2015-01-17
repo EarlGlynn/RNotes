@@ -44,9 +44,13 @@ author: "Earl F Glynn"
 
 * [Morphological Operations](package/EBImage/Morphological-Operations.html)
 
+* [Object Removal and Re-Indexing](package/EBImage/Object-Removal-ReIndexing.html)
+
 * [Oriented Contours](package/EBImage/Oriented-Contours.html)
 
 * [Propagate](package/EBImage/Propagate.html)
+
+* [Paint Objects](package/EBImage/Paint-Objects.html)
 
 * [Thresholding](package/EBImage/Thresholding.html)
 
