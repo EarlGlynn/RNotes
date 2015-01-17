@@ -40,6 +40,8 @@ author: "Earl F Glynn"
 
 * [Intensity values linear scaling](package/EBImage/Intensity-values-linear-scaling.html)
 
+* [Local Curvature](package/EBImage/Local-Curvature.html)
+
 * [Morphological Operations](package/EBImage/Morphological-Operations.html)
 
 * [Oriented Contours](package/EBImage/Oriented-Contours.html)
