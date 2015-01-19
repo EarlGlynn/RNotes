@@ -7,60 +7,15 @@ author: "Earl F Glynn"
 
 ## Packages
 
-### EBImage
+### R
 
-[Intro to EBImage](package/EBImage/Intro-to-EBImage.html)
+* [RColorBrewer](package/RColorBrewer/index.html)
 
-* [Binary Segmentation](package/EBImage/Binary-Segmentation.html)
+### Bioconductor
 
-* [Color](package/EBImage/Color.html)
-
-* [Combining Images](package/EBImage/Combining-Images.html)
-
-* [Draw Circle](package/EBImage/Draw-Circle.html)
-
-* [Features](package/EBImage/Features.html)
-
-    + Basic Features
-    + [Haralick Textural Features](package/EBImage/Haralick-Textural-Features.html)
-    + Moment Features
-    + Shape Features
-  
-* [Filters](package/EBImage/Filters.html)
-
-* [Filling Holes and Regions](package/EBImage/Filling.html)
-
-* [Histogram Equalization](package/EBImage/Histogram-Equalization.html)
-  
-* [Image Class](package/EBImage/Image-Class.html)
-
-* [Image Stack](package/EBImage/Image-Stack.html)
-
-* [Image Display and I/O](package/EBImage/Image-Display-IO.html)
-
-* [Intensity values linear scaling](package/EBImage/Intensity-values-linear-scaling.html)
-
-* [Local Curvature](package/EBImage/Local-Curvature.html)
-
-* [Morphological Operations](package/EBImage/Morphological-Operations.html)
-
-* [Object Removal and Re-Indexing](package/EBImage/Object-Removal-ReIndexing.html)
-
-* [Oriented Contours](package/EBImage/Oriented-Contours.html)
-
-* [Propagate](package/EBImage/Propagate.html)
-
-* [Paint Objects](package/EBImage/Paint-Objects.html)
-
-* [Thresholding](package/EBImage/Thresholding.html)
-
-* [Tiling / Untiling](package/EBImage/Tile-Untile.html)
-
-* [Transformations](package/EBImage/Spatial-Linear-Transformations.html) (spatial linear, transpose, ...)
-
-* [Watershed transformation and watershed based object detection](package/EBImage/Watershed.html)
-
-
+* [EBImage](package/EBImage/index.html)
+ 
+## R Resources
 
 
 
