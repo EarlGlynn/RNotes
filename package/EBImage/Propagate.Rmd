@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Propagate'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Propagate"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -43,7 +46,8 @@ display(x, title='Image')
 display(seeds/max(seeds), title='Seeds')
 display(segmented, title="Voronoi regions", all=TRUE)
 ```
-                                                              
+ 
+*****
 
 ```{r}
 packageVersion("EBImage")

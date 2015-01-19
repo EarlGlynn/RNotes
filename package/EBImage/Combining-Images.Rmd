@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Combining Images'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Combining Images"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -30,6 +33,12 @@ xt <- list()
 for (t in seq(0.1, 5, len=9)) xt=c(xt, list(gblur(x, s=t)))
 xt <- combine(xt)
 display(xt, title='Blurred images', all=TRUE)
+```
+
+*****
+
+```{r}
+packageVersion("EBImage")
 ```
 
 *efg*  

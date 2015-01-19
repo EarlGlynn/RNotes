@@ -1,9 +1,11 @@
 ---
-title: 'EBImage: Thresholding'
-author: "Earl F Glynn"
+title: "efg's R Notes: Thresholding"
 output: html_document
 ---
 
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -36,6 +38,7 @@ y <- x > otsu(x, levels=4)
 display(y, all=TRUE)
 ```
 
+*****
 
 ```{r}
 packageVersion("EBImage")

@@ -1,12 +1,17 @@
 ---
-title: 'EBImage:  Watershed transformation and watershed based object detection'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Watershed"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
 ```
+
+# Watershed transformation and watershed based object detection
 
 The algorithm identifies and separates objects that stand out of the background (zero). After the water fill, the source image is flipped upside down and the resulting valleys (values with higher intensities) are filled in first until another object or background is met. The deepest valleys (pixels with highest intensity) become indexed first, starting from 1. [from **?watershed** help]
 
@@ -29,6 +34,8 @@ display(normalize(y), title='Distance map')
 w <- watershed(y)
 display(normalize(w), title='Watershed')
 ```
+
+*****
 
 ```{r}
 packageVersion("EBImage")

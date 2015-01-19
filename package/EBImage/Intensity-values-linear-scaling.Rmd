@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Intensity values linear scaling'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Intensity values linear scaling"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -28,6 +31,7 @@ print(range(y))
 display(y, title='Segmented')
 ```
 
+*****
 
 ```{r}
 packageVersion("EBImage")

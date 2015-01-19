@@ -1,8 +1,11 @@
 ---
 title: 'EBImage:  Morphological Operations'
-author: "Earl F Glynn"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -62,6 +65,8 @@ display(eierode, title="eierode")
 eidilat <- dilate(ei, kern)
 display(eidilat, title="eidilat")
 ```
+
+*****
 
 ```{r}
 packageVersion("EBImage")

@@ -1,8 +1,11 @@
 ---
-title: "Haralick Textural Features"
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Haralick Textural Features"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 The discussion below outlines the steps needed to compute Haralick texture features in an image.  The first step is to compute a gray-level co-occurrence matrix.  The Haralick features are computed from various statistical properties of the co-occurence matrix.
 
@@ -296,6 +299,7 @@ Where are the "Details" mentioned in the online help?
 
 **[Pham 2010]** Tuan Anh Pham.  [Optimization of Texture Feature Extraction Algorithm](http://repository.tudelft.nl/view/ir/uuid%3Aa7924113-c9f8-435d-824f-0232ff6b419c/).  [Delft University of Technology](http://www.tudelft.nl/en/) Computer Engineering MSc Thesis.  2010.  Accessed 2015-01-10.
 
+*****
 
 *efg*  
 `r format(Sys.time(), "%Y-%m-%d  %H%M")`            

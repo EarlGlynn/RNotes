@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Image Display and I/O'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Image Display and I/O"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -10,25 +13,38 @@ library(EBImage)
 
 # Image Display
 
-```{r, fig.width=4, fig.height=3}
 ## Display a single image
+
+```{r, fig.width=4, fig.height=3}
 x <- readImage(system.file("images", "sample-color.png", package="EBImage"))[257:768,,]
 display(x, "Sample")
+```
 
 ## Display a thresholded sequence ...
+
+```{r}
 y <- readImage(system.file("images", "sample.png", package="EBImage"))
 yt <- list()
 for (t in seq(0.1, 5, len=9)) yt=c(yt, list(gblur(y, s=t)))
 yt <- combine(yt)
+```
 
 ## ... using the browser viewer ...
+
+```{r, fig.width=4, fig.height=3}
 display(yt, "Blurred images")
 display(yt, "Blurred images", all=TRUE)
+```
 
 ## ... or using R's build-in raster functions
+
+```{r, fig.width=4, fig.height=3}
 display(resize(yt, 256, 256), method = "raster", all = TRUE)
+```
 
 ## Display the last frame 
+
+```{r, fig.width=4, fig.height=3}
 display(yt, method = "raster", frame = numberOfFrames(yt, type = "render"))
 ```
 
@@ -73,6 +89,8 @@ cat("Converted '", f, "' into '", tempfile, "'.\n", sep="")
 files <- writeImage(y, tempfile("", , ".jpeg"), quality = 85)
 cat("Files created: ", files, sep="\n")
 ```
+
+*****
 
 ```{r}
 packageVersion("EBImage")

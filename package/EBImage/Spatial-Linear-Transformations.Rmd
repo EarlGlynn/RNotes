@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Spatial Linear and Other Transformations'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Spatial Linear and Other Transformations"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -48,6 +51,8 @@ display(y, title='Transposed')
 z = transpose(y)
 identical(x, z)
 ```
+
+*****
 
 ```{r}
 packageVersion("EBImage")

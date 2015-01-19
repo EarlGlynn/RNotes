@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Filters and Filtering'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Filters and Filtering"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -61,6 +64,7 @@ y <- medianFilter(x, 5)
 display(y, title='Filtered nuclei', all=TRUE)
 ```
 
+*****
 
 ```{r}
 packageVersion("EBImage")

@@ -1,8 +1,11 @@
 ---
 title: 'EBImage:  Distance Map Transform'
-author: "Earl F Glynn"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -30,6 +33,8 @@ Compute and display L1 distance matrix:
 L1 <- distmap(x, metric="manhattan")
 display(L1/10, title='Manhattan distance map of x')
 ```
+
+*****
 
 ```{r}
 packageVersion("EBImage")

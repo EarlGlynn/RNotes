@@ -1,9 +1,11 @@
 ---
-title: "R Notes:  EBImage Bioconductor Package"
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage Bioconductor Package"
+output: html_document
 ---
 
 **[RNotes](../../index.html)**  
+
+*****
 
 ## Images/Graphics Displayed by Help Pages
 
@@ -64,7 +66,7 @@ author: "Earl F Glynn"
 
 * Watters O, Pickering M, Murphy R, Murphy KJ, O'Connor JJ. [Automated analysis of intracellular calcium fluorescence in rat organotypic hippocampal cultures: comparison to a manual, observer based method](). *Journal of Neuroscience Methods*.  Feb. 2014. [PubMed](http://www.ncbi.nlm.nih.gov/pubmed/24325985).
 
-
+*****
 
 *efg*  
 `r format(Sys.time(), "%Y-%m-%d  %H%M")`                  

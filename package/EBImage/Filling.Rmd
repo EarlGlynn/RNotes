@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Filling Holes and Regions'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Filling Holes and Regions"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -37,6 +40,12 @@ display(y)
 x <- readImage(system.file("images", "sample.png", package="EBImage"))
 y <- floodFill(x, c(226, 121), 1, tolerance=0.1)
 display(y)
+```
+
+*****
+
+```{r}
+packageVersion("EBImage")
 ```
 
 *efg*  

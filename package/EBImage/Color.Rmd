@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Color'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Color"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -52,6 +55,8 @@ y <- bwlabel(x)
 z <- colorLabels(y)
 display(z, title='Colored segmentation')
 ```
+
+*****
 
 ```{r}
 packageVersion("EBImage")

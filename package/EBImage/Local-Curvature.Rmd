@@ -1,8 +1,11 @@
 ---
-title: 'EBImage: Local Curvature'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Local Curvature"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -48,6 +51,12 @@ display(combine(x2, 10*I), title = "Image curvature", all=TRUE)
 ```
 
 Are the images above the expected ones?
+
+*****
+
+```{r}
+packageVersion("EBImage")
+```
 
 *efg*  
 `r format(Sys.time(), "%Y-%m-%d  %H%M")` 

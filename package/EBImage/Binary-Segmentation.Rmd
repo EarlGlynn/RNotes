@@ -1,9 +1,11 @@
 ---
-title: 'EBImage:  Binary segmentation'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Binary segmentation"
 output: html_document
 ---
 
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -49,6 +51,7 @@ zrainbow = Image(cols[1+z], dim=dim(z))
 display(zrainbow, title='Cell nuclei (recolored)', all=TRUE)
 ```
 
+*****
 
 ```{r}
 packageVersion("EBImage")

@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Histogram Equalization'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Histogram Equalization"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -48,6 +51,12 @@ grid()
 
 ```{r, fig.width=6}
 display(y, title='Equalized Grayscale Image')
+```
+
+*****
+
+```{r}
+packageVersion("EBImage")
 ```
 
 *efg*  

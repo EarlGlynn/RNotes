@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  drawCircle'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:   drawCircle"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -22,6 +25,12 @@ display(y)
 x <- channel(y, 'rgb')
 y <- drawCircle(x, 200, 140, 57, col='yellow', fill=TRUE)
 display(y)
+```
+
+*****
+
+```{r}
+packageVersion("EBImage")
 ```
 
 *efg*  

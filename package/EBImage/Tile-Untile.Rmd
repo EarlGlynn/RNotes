@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Tiling and Untiling Images'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Tiling and Untiling Images"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -30,6 +33,7 @@ xu <- untile(img, c(3, 3))
 display(xu, title='Blocks', all=TRUE)
 ```
 
+*****
 
 ```{r}
 packageVersion("EBImage")

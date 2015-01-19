@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Image Stack'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Image Stack"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -58,6 +61,8 @@ display(st, title='Stacked objects', all=TRUE)
 ```
 
 Related:  Slides 13-17 in Wolfgang Huber's presentation [Machine learning in high-throughput screening and automated phenotyping](http://mlpm.eu/static/media/uploads/mlpm13_slides_huber01.pdf) [~35 MB].
+
+*****
 
 ```{r}
 packageVersion("EBImage")

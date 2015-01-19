@@ -1,8 +1,11 @@
 ---
-title: "Introduction to EBImage"
-author: "Earl F Glynn"
-output: pdf_document
+title: 'efg''s R Notes:  Introduction to EBImage'
+output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 This is an attempt to replicate *[Introduction to EBImage](http://www.bioconductor.org/packages/release/bioc/vignettes/EBImage/inst/doc/EBImage-introduction.pdf)* by Andrzej Oles et al, Dec. 3, 2014, using R markdown in RStudio.
 
@@ -301,6 +304,8 @@ res <- paintObjects(cmask, img, col='#ff00ff')
 res <- paintObjects(nmask, res, col='#ffff00')
 display(res, all=TRUE, title="Figure 20: Final segmentation res")
 ```
+
+*****
 
 ```{r}
 packageVersion("EBImage")

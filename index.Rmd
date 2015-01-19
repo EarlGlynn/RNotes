@@ -1,9 +1,15 @@
 ---
-title: "R Notes"
-author: "Earl F Glynn"
+title: "efg's R Notes"
+output: html_document
 ---
 
-** Under Construction **
+*****
+
+**Under Construction**
+
+*****
+
+## R Topics
 
 ## Packages
 
@@ -17,11 +23,8 @@ author: "Earl F Glynn"
  
 ## R Resources
 
-
-
-
-
-
+*****
 
 *efg*  
+@EarlGlynn  
 `r format(Sys.time(), "%Y-%m-%d  %H%M")`                  

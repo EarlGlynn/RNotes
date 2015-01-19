@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Image Object Features'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Image Object Features"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -69,6 +72,8 @@ ftp
 ```
 
 Related:  Slides 13-22 in Wolfgang Huber's presentation [Machine learning in high-throughput screening and automated phenotyping](http://mlpm.eu/static/media/uploads/mlpm13_slides_huber01.pdf) [~35 MB].
+
+*****
 
 ```{r}
 packageVersion("EBImage")

@@ -1,8 +1,11 @@
 ---
-title: 'EBImage:  Oriented Contours'
-author: "Earl F Glynn"
+title: "efg's R Notes:  EBImage:  Oriented Contours"
 output: html_document
 ---
+
+**[RNotes](../../index.html) | [EBImage](index.html)** 
+
+*****
 
 ```{r}
 library(EBImage)
@@ -18,6 +21,12 @@ display(x)
 oc = ocontour(x)
 plot(oc[[1]], type='l')
 points(oc[[1]], col=2)
+```
+
+*****
+
+```{r}
+packageVersion("EBImage")
 ```
 
 *efg*  
