@@ -1,0 +1,68 @@
+---
+title: "efg's R Notes:  EBImage:  Haralick Features"
+output: html_document
+---
+
+**[RNotes](../../index.html) | [EBImage](index.html) | [Features](Features.html)**
+
+**[Basic](Features-Basic.html) | Haralick | [Moment](Features-Moment.html) | [Shape](Features-Shape.html)** 
+
+**[Haralick Textural Features Details](Haralick-Textural-Features.html)**
+
+*****
+
+The function *computeFeatures.haralick* computes features that quantify pixel texture. Features are named according to Haralick's original paper. See **[Haralick Textural Features Details](Haralick-Textural-Features.html)** for details about the 26 features. 
+
+All Haralick features have a prefix "h.".  
+
+```{r}
+library(EBImage)
+```
+
+```
+computeFeatures.haralick(x, ref , properties=FALSE, haralick.nbins=32, haralick.scales=c(1, 2), xs, ...)
+```
+
+## List properties of Haralick features
+```{r, comment=NA}
+feature.properties <- computeFeatures.haralick(properties=TRUE)
+feature.properties
+```
+
+## Load and segment nucleus
+
+```{r, fig.width=4, fig.height=2}
+par(mfrow=c(1,2))
+y <- readImage(system.file("images", "nuclei.tif", package="EBImage"))[,,1]
+x <- thresh(y, 10, 10, 0.05)
+x <- opening(x, makeBrush(5, shape='disc'))
+x <- bwlabel(x)
+
+display(y, title="Cell nuclei")
+display(x, title="Segmented nuclei")
+```
+
+## Compute Haralick features
+
+```{r, fig.width=8, comment=NA}
+haralickFeatures <- computeFeatures.haralick(x, y)
+str(haralickFeatures)
+options(digits=4, width=100)
+haralickFeatures
+```
+
+## Correlations of Haralick features
+
+```{r}
+correlationMatrix <- cor(haralickFeatures)
+correlationMatrix
+```
+
+*****
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

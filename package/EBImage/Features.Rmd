@@ -1,9 +1,11 @@
 ---
-title: "efg's R Notes:  EBImage:  Image Object Features"
+title: "efg's R Notes:  EBImage:  Features"
 output: html_document
 ---
 
-**[RNotes](../../index.html) | [EBImage](index.html)** 
+**[RNotes](../../index.html) | [EBImage](index.html) | Features**
+
+**[Basic](Features-Basic.html) | [Haralick](Features-Haralick.html) | [Moment](Features-Moment.html) | [Shape](Features-Shape.html)** 
 
 *****
 

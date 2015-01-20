@@ -1,0 +1,73 @@
+---
+title: "efg's R Notes:  EBImage:  Basic Features"
+output: html_document
+---
+
+**[RNotes](../../index.html) | [EBImage](index.html) | [Features](Features.html)**
+
+**Basic | [Haralick](Features-Haralick.html) | [Moment](Features-Moment.html) | [Shape](Features-Shape.html)** 
+
+*****
+
+The function *computeFeatures.basic* computes spatial-independent statistics on pixel intensities: 
+
+* b.mean: mean intensity 
+* b.sd: standard deviation intensity 
+* b.mad: median absolute deviation (mad) intensity 
+* b.q\*: quantile intensity 
+
+All basic features have a prefix "b.".  
+
+Intensity values range from 0.0 to 1.0. 
+
+```{r}
+library(EBImage)
+```
+
+```
+computeFeatures.basic(x, ref, properties=FALSE, basic.quantiles=c(0.01, 0.05, 0.5, 0.95, 0.99), xs, ...)
+```
+
+## List properties of basic features
+```{r, comment=NA}
+feature.properties <- computeFeatures.basic(properties=TRUE)
+feature.properties
+```
+
+## Load and segment nucleus
+
+```{r, fig.width=4, fig.height=2}
+par(mfrow=c(1,2))
+y <- readImage(system.file("images", "nuclei.tif", package="EBImage"))[,,1]
+x <- thresh(y, 10, 10, 0.05)
+x <- opening(x, makeBrush(5, shape='disc'))
+x <- bwlabel(x)
+
+display(y, title="Cell nuclei")
+display(x, title="Segmented nuclei")
+```
+
+## Compute basic features
+
+```{r, fig.width=8, comment=NA}
+basicFeatures <- computeFeatures.basic(x, y)
+str(basicFeatures)
+options(digits=4)
+basicFeatures
+```
+
+## Correlations of basic features
+
+```{r}
+correlationMatrix <- cor(basicFeatures)
+correlationMatrix
+```
+
+*****
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

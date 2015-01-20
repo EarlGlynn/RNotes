@@ -1,0 +1,74 @@
+---
+title: "efg's R Notes:  EBImage:  Shape Features"
+output: html_document
+---
+
+**[RNotes](../../index.html) | [EBImage](index.html) | [Features](Features.html)**
+
+**[Basic](Features-Basic.html) | [Haralick](Features-Haralick.html) | [Moment](Features-Moment.html) | Shape** 
+
+*****
+
+The function *computeFeatures.shape* computes features that quantify object shape: 
+
+* s.area: area size [pixels^2] 
+* s.perimeter: perimeter [pixels] 
+* s.radius.mean: mean radius [pixels] 
+* s.radius.sd: standard deviation of the mean radius [pixels] 
+* s.radius.max: max radius [pixels] 
+* s.radius.min: min radius [pixels] 
+
+All shape features have a prefix "s.".  
+
+
+```{r}
+library(EBImage)
+```
+
+```
+computeFeatures.shape(x, properties=FALSE, xs, ...)
+```
+
+## List properties of shape features
+```{r, comment=NA}
+feature.properties <- computeFeatures.shape(properties=TRUE)
+feature.properties
+```
+
+## Load and segment nucleus
+
+```{r, fig.width=4, fig.height=2}
+par(mfrow=c(1,2))
+y <- readImage(system.file("images", "nuclei.tif", package="EBImage"))[,,1]
+x <- thresh(y, 10, 10, 0.05)
+x <- opening(x, makeBrush(5, shape='disc'))
+x <- bwlabel(x)
+
+display(y, title="Cell nuclei")
+display(x, title="Segmented nuclei")
+```
+
+## Compute shape features
+
+```{r, fig.width=8, comment=NA}
+shapeFeatures <- computeFeatures.shape(x)
+str(shapeFeatures)
+options(digits=4, width=100)
+shapeFeatures
+```
+
+## Correlations of basic features
+
+```{r}
+correlationMatrix <- cor(shapeFeatures)
+correlationMatrix
+```
+
+*****
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

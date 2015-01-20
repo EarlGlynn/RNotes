@@ -1,9 +1,11 @@
 ---
-title: "efg's R Notes:  EBImage:  Haralick Textural Features"
+title: "efg's R Notes:  EBImage:  Haralick Textural Features Details"
 output: html_document
 ---
 
-**[RNotes](../../index.html) | [EBImage](index.html)** 
+**[RNotes](../../index.html) | [EBImage](index.html) | [Features](Features.html)**
+
+**[Basic](Features-Basic.html) | [Haralick](Features-Haralick.html) | [Moment](Features-Moment.html) | [Shape](Features-Shape.html)** 
 
 *****
 
