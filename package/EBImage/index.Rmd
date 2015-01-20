@@ -21,10 +21,10 @@ output: html_document
 
 * [Features](Features.html)
 
-    + Basic Features
-    + [Haralick Textural Features](Haralick-Textural-Features.html)
-    + Moment Features
-    + Shape Features
+    + [Basic Features](Features-Basic.html)
+    + [Haralick Features](Features-Haralick.html) | [Technical Details](Haralick-Textural-Features.html)
+    + [Moment Features](Features-Moment.html)
+    + [Shape Features](Features-Shape.html)
   
 * [Filters](Filters.html)
 
