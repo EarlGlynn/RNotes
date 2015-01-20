@@ -57,7 +57,7 @@ options(digits=4, width=100)
 shapeFeatures
 ```
 
-## Correlations of basic features
+## Correlations of shape features
 
 ```{r}
 correlationMatrix <- cor(shapeFeatures)
