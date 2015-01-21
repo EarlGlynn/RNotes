@@ -1,0 +1,133 @@
+---
+title: "efg's R Notes:  EBImage:  Color Basics"
+output: html_document
+---
+
+**[RNotes](../../index.html) | [EBImage](index.html) | [Color](Color.html)** 
+
+*****
+
+```{r}
+library(EBImage)
+```
+
+## Color images have three color planes
+
+The *sample-color.png* file is the [Two Macaws](http://r0k.us/graphics/kodak/kodim23.html) true color image from [Kodak](http://r0k.us/graphics/kodak/).
+
+```{r}
+macaws <- readImage(system.file("images", "sample-color.png", package="EBImage"))
+str(macaws)
+```
+
+Color images have *colormode* = 2.
+
+```{r, fig.width=4, fig.height=3}
+display(macaws)
+```
+
+
+Split color image into separate red, green and blue color planes, which can be displayed as *Grayscale* images.
+
+```{r, fig.width=8, fig.height=2.5}
+par(mfrow=c(1,3))
+redPlane   <- channel(macaws, "red")
+greenPlane <- channel(macaws, "green")
+bluePlane  <- channel(macaws, "blue")
+
+display(redPlane)
+display(greenPlane)
+display(bluePlane)
+```
+
+```{r}
+str(redPlane)
+str(greenPlane)
+str(bluePlane)
+```
+
+*Grayscale* images have *colormode* = 0.
+
+The *colormode* of a color image can be set to *Grayscale* to also visualize the color planes.  Use *all=TRUE* to see all images in the stack.
+
+```{r, fig.width=6, fig.height=4.5}
+colorMode(macaws) <- Grayscale
+str(macaws)
+display(macaws, all=TRUE)
+```
+
+The stack of images can be indexed via the third dimension of the image array.  Index=1 is the red plane, Index=2 is the green plane, and Index=3 is the blue plane.
+
+## Histograms of color planes
+
+```{r}
+hist(macaws[,,1])
+grid()
+mtext("Red color plane")
+```
+
+*hist(redPlane)* would create the same histogram as above.
+
+```{r}
+hist(macaws[,,2])
+grid()
+mtext("Green color plane")
+
+hist(macaws[,,3])
+grid()
+mtext("Blue color plane")
+```
+
+## Display single color plane in RGB
+
+Let's display the *macaws* image with its shades of red and the green and blue color planes set to zero.
+
+```{r, fig.width=4, fig.height=3}
+colorMode(macaws) <- Color  # restore from above
+
+macawsRed <- macaws   # leave red plane unchanged
+str(macawsRed)       
+
+macawsRed[,,2] <- 0   # set green to 0
+macawsRed[,,3] <- 0   # seg blue  to 0
+
+display(macawsRed)
+```
+
+Similarly, the green and blue planes can be displayed:
+
+```{r, fig.width=4, fig.height=3}
+macawsGreen <- macaws   # leave green plane unchanged      
+macawsGreen[,,1] <- 0   # set red   to 0
+macawsGreen[,,3] <- 0   # seg blue  to 0
+display(macawsGreen)
+
+macawsBlue <- macaws   # leave blue plane unchanged      
+macawsBlue[,,1] <- 0   # set red   to 0
+macawsBlue[,,2] <- 0   # seg green to 0
+display(macawsBlue)
+```
+
+Adding the light from the red, green and blue images above results in the [RGB color image](http://en.wikipedia.org/wiki/RGB_color_model).
+
+## Rotate the RGB color planes
+
+With a real-world image there is likely no reason to change the color planes, but such a manipulation might make sense to display synthetic data using false colors.
+
+```{r, fig.width=4, fig.height=3}
+macawsFalseColor <- macaws
+
+macawsFalseColor[,,1] <- channel(macaws, "green")  # set red   plane to green plane 
+macawsFalseColor[,,2] <- channel(macaws, "blue")   # set green plane to blue  plane
+macawsFalseColor[,,3] <- channel(macaws, "red")    # set blue  plane to red   plane
+display(macawsFalseColor)
+```
+
+*****
+
+```{r}
+packageVersion("EBImage")
+```
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`  

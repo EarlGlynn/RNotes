@@ -13,13 +13,51 @@ library(EBImage)
 
 # Color and Image Color Mode Conversions
 
-```{r, fig.width=8, fig.height=2}
-par(mfrow=c(1,2))
-x <- readImage(system.file("images", "shapes.png", package="EBImage"))
-display(x)
-y <- channel(x, 'asgreen')
-display(y)
+"Two Macaws" from Kodak True Color Image Suite
+http://r0k.us/graphics/kodak/
+http://r0k.us/graphics/kodak/kodim23.html
+
+```{r, fig.width=4, fig.height=3}
+macaws <- readImage(system.file("images", "sample-color.png", package="EBImage"))
+str(macaws)
+display(macaws)
+
+redPlane   <- channel(macaws, "red")
+greenPlane <- channel(macaws, "green")
+bluePlane  <- channel(macaws, "blue")
+
+str(redPlane)
+str(greenPlane)
+str(bluePlane)
+
+display(redPlane)
+display(greenPlane)
+display(bluePlane)
+
 ```
+
+
+Read and display sample image.  The image is stored in an S4 Image class with pixels in *.Data*.  The *colormode* is *Grayscale* when the *colormode* slot is 0.
+
+
+```{r, fig.height=3}
+par(mfrow=c(1,2))
+grayScaleImage <- readImage(system.file("images", "shapes.png", package="EBImage"))
+str(grayScaleImage)
+colorMode(grayScaleImage)
+display(grayScaleImage)
+```
+
+Convert the *Grayscale* image above to a *Color* image with the hue *asgreen*.
+
+```{r, fig.height=3}
+greenHueImage <- channel(grayScaleImage, 'asgreen')
+str(greenHueImage)
+colorMode(greenHueImage)
+display(greenHueImage)
+```
+
+Note the change from a single plane with *grayScaleImage* to three planes (with red, green, blue) with a *Color* image in *greenHueImage*.
 
 ## rgbImage
 
