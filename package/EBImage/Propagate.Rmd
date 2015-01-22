@@ -47,6 +47,8 @@ display(seeds/max(seeds), title='Seeds')
 display(segmented, title="Voronoi regions", all=TRUE)
 ```
  
+The example produces a sequence of segmentation scenarios with varying lambda parameter controlling the weight of the Euclidean distance term in the Voronoi tessellation. The first image in the sequence corresponds to a situation when the segmentation is predominantly driven by the image content (lambda close to 0) while the last one shows a mostly Euclidean space division. For details see the references from *?propagate*. 
+ 
 *****
 
 ```{r}
