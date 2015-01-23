@@ -62,10 +62,40 @@ correlationMatrix <- cor(momentFeatures)
 correlationMatrix
 ```
 
+
+## Heatmaps of correlation matrix
+
+### Color-coded display of correlation matrix
+
+```{r, message=FALSE}
+library(gplots)         # heatmap.2
+library(RColorBrewer)   # brewer.pal
+```
+
+```{r, fig.width=6, fig.height=6}
+heatmap.2(correlationMatrix, dendrogram="none", Rowv=FALSE, symm=TRUE,
+          cellnote=format(round(correlationMatrix,2)),
+          main="Moment Features",
+          scale="none", col=brewer.pal(11,"RdBu"), margins=c(9,9), trace="none")
+```
+
+### Dendrograms show relationships in correlation matrix
+
+```{r, fig.width=6, fig.height=6, warning=NA}
+heatmap.2(correlationMatrix, key=FALSE,
+          cellnote=format(round(correlationMatrix,2)),
+          main="Moment Features",
+          scale="none", col=brewer.pal(11,"RdBu"), margins=c(9,9), trace="none")
+```
+
+A [diverging palette](../../package/RColorBrewer/index.html) from RColorBrewer is used for the heatmaps since correlations can range from -1 to +1. In the *RdBu* pallete, red is low and blue is high.
+
 *****
 
 ```{r}
 packageVersion("EBImage")
+packageVersion("gplots")
+packageVersion("RColorBrewer")
 ```
 
 *efg*  
