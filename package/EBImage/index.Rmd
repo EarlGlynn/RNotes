@@ -7,58 +7,45 @@ output: html_document
 
 *****
 
-## Images/Graphics Displayed by Help Pages
+## Topics
 
-[Intro to EBImage](Intro-to-EBImage.html)
+|                                  | Topic                                     |
+|----------------------------------|-------------------------------------------|
+| ![Intro](figures/Cells.jpg)      | [Intro to EBImage](Intro-to-EBImage.html) |
 
-* [Binary Segmentation](Binary-Segmentation.html)
+*****
 
-* [Color](Color.html)
+## Expanded Help Pages
 
-* [Combining Images](Combining-Images.html)
+|                                                          | Help                                     | Comments  |
+|----------------------------------------------------------|------------------------------------------|-----------|
+| ![Binary Segmentation](figures/Binary-Segmentation.jpg)  | [Binary Segmentation](Binary-Segmentation.html)  |   |
+| ![Color](figures/Cell-Nuclei.jpg)                        | [Color](Color.html)                              |   |
+| ![Combining Images](figures/Combining-Images.jpg)        | [Combining Images](Combining-Images.html)        |   |
+| ![Draw Circle](figures/Draw-Circle.jpg)                  | [Draw Circle](Draw-Circle.html)                  |   |
+|                                                          | [Features](Features.html)                        |   |
+|                                                          | - [Basic Features](Features-Basic.html)            |   |
+|                          | - [Haralick Features](Features-Haralick.html)      | [Technical Details](Haralick-Textural-Features.html)   |
+| ![Moment Features](figures/Ellipse.jpg)                  | - [Moment Features](Features-Moment.html)          |   |
+| ![Shape Features](figures/Shape-Features.jpg)            | - [Shape Features](Features-Shape.html)            |   |
+| ![Filters](figures/Filters.jpg)                          | [Filters](Filters.html)           |   |
+|                                                          | [Filling Holes and Regions](Filling.html)           |   |
+|                                                          | [Histogram Equalization](Histogram-Equalization.html)           |   |
+| ![Image Class](figures/Image-Class.jpg)                  | [Image Class](Image-Class.html)           |   |
+| ![Image Stack](figures/Image-Stack.jpg)                  | [Image Stack](Image-Stack.html)           |   |
+|                                                          | [Image Display and I/O](Image-Display-IO.html)           |   |
+|                                                          | [Intensity values linear scaling](Intensity-values-linear-scaling.html)           |   |
+| ![Local Curvature](figures/Local-Curvature.jpg)          | [Local Curvature](Local-Curvature.html)          |   |
+|                                                          | [Morphological Operations](Morphological-Operations.html)           |   |
+|                                                          | [Object Removal and Re-Indexing](Object-Removal-ReIndexing.html)           |   |
+| ![Oriented Contours](figures/Oriented-Contours.jpg)      | [Oriented Contours](Oriented-Contours.html)           |   |
+| ![Propagate](figures/Propagate.jpg)                      | [Propagate](Propagate.html)           |   |
+|                                                          | [Paint Objects](Paint-Objects.html)           |   |
+| ![Thresholding](figures/Thresholding.jpg)                | [Thresholding](Thresholding.html)          |   |
+|                                                          | [Tiling / Untiling](Tile-Untile.html)          |   |
+| ![Transformations](figures/Image-Transformations.jpg)    | [Transformations](Spatial-Linear-Transformations.html)          |   |
+|                                                          | [Watershed transformation and watershed based object detection](Watershed.html)          |   |
 
-* [Draw Circle](Draw-Circle.html)
-
-* [Features](Features.html)
-
-    + [Basic Features](Features-Basic.html)
-    + [Haralick Features](Features-Haralick.html) | [Technical Details](Haralick-Textural-Features.html)
-    + [Moment Features](Features-Moment.html)
-    + [Shape Features](Features-Shape.html)
-  
-* [Filters](Filters.html)
-
-* [Filling Holes and Regions](Filling.html)
-
-* [Histogram Equalization](Histogram-Equalization.html)
-  
-* [Image Class](Image-Class.html)
-
-* [Image Stack](Image-Stack.html)
-
-* [Image Display and I/O](Image-Display-IO.html)
-
-* [Intensity values linear scaling](Intensity-values-linear-scaling.html)
-
-* [Local Curvature](Local-Curvature.html)
-
-* [Morphological Operations](Morphological-Operations.html)
-
-* [Object Removal and Re-Indexing](Object-Removal-ReIndexing.html)
-
-* [Oriented Contours](Oriented-Contours.html)
-
-* [Propagate](Propagate.html)
-
-* [Paint Objects](Paint-Objects.html)
-
-* [Thresholding](Thresholding.html)
-
-* [Tiling / Untiling](Tile-Untile.html)
-
-* [Transformations](Spatial-Linear-Transformations.html) (spatial linear, transpose, ...)
-
-* [Watershed transformation and watershed based object detection](Watershed.html)
 
 ## References
 

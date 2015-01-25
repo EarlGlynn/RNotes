@@ -13,11 +13,13 @@ library(EBImage)
 
 Computes the oriented contour of objects.
 
-```{r}
+```{r, fig.width=6, fig.height=4}
 x <- readImage(system.file("images", "shapes.png", package="EBImage"))
 x <- x[1:120,50:120]
 display(x)
+```
 
+```{r, fig.width=4, fig.height=4}
 oc = ocontour(x)
 plot(oc[[1]], type='l')
 points(oc[[1]], col=2)
