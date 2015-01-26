@@ -11,15 +11,16 @@ output: html_document
 
 ## R Topics
 
+*****
+
 ## Packages
 
-### R
+|                                                                | Package                                         | Source       |
+|----------------------------------------------------------------|-------------------------------------------------|--------------|
+| ![EBImage](package/EBImage/figures/Cells.jpg)                  | [EBImage](package/EBImage/index.html)           | [Bioconductor](http://www.bioconductor.org/) |
+| ![RColorBrewer](package/RColorBrewer/figures/RColorBrewer.jpg) | [RColorBrewer](package/RColorBrewer/index.html) | [CRAN](http://cran.r-project.org/web/packages/)         |
 
-* [RColorBrewer](package/RColorBrewer/index.html)
-
-### Bioconductor
-
-* [EBImage](package/EBImage/index.html)
+*****
  
 ## R Resources
 
