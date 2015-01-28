@@ -1,0 +1,58 @@
+---
+title: 'efg''s R Notes:  waveslim:  dwt.2d'
+output: html_document
+---
+
+```{r}
+library(waveslim)
+```
+
+## dwt.2d
+
+### Xbox image
+
+```{r}
+data(xbox)
+xbox.dwt <- dwt.2d(xbox, "haar", 3)
+par(mfrow=c(1,1), pty="s")
+plot.dwt.2d(xbox.dwt)
+par(mfrow=c(2,2), pty="s")
+image(1:dim(xbox)[1], 1:dim(xbox)[2], xbox, xlab="", ylab="",
+      main="Original Image")
+image(1:dim(xbox)[1], 1:dim(xbox)[2], idwt.2d(xbox.dwt), xlab="", ylab="",
+      main="Wavelet Reconstruction")
+image(1:dim(xbox)[1], 1:dim(xbox)[2], xbox - idwt.2d(xbox.dwt),
+      xlab="", ylab="", main="Difference")
+```
+
+### Ingrid Daubechies image
+```{r}
+data(dau)
+dim(dau)
+hist(dau)
+par(mfrow=c(1,1), pty="s")
+image(dau, col=rainbow(128))
+sum(dau^2)
+dau.dwt <- dwt.2d(dau, "d4", 3)
+plot.dwt.2d(dau.dwt)
+sum(plot.dwt.2d(dau.dwt, plot=FALSE)^2)
+```
+Explanation of above image:  [How to apply DWT (Discrete Wavelet Transform) to Image?](http://imagelpcmatlab.blogspot.com/2013/12/how-to-apply-dwt-discrete-wavelet.html)
+
+**References**
+
+* St?phane Mallat.  *[A Wavelet Tour of Signal Processing](https://www.ceremade.dauphine.fr/~peyre/wavelet-tour/)*.  Academic Press, 2008.
+
+* Martin Vetterli and Jelena Kovacevic.  *[Wavelets and Subband Coding](http://waveletsandsubbandcoding.org/Repository/VetterliKovacevic95_Manuscript.pdf)*, Prentice Hall 1995.
+
+* Ramazan Gen?ay, Faruk Sel?uk, and Brandon Whitcher. *[An Introduction to Wavelets and Other Filtering Methods in Finance and Economics](http://wwwf.imperial.ac.uk/~bwhitche/book/software.html)*.  Academic Press, 2001.
+
+*****
+
+```{r}
+packageVersion("waveslim")
+```       
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`                   
+                                                                                    

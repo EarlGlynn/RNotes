@@ -1,0 +1,20 @@
+---
+title: 'efg''s R Notes:  waveslim Package'
+output: html_document
+---
+
+**[RNotes](../../index.html)**
+
+*****
+
+## Topics
+
+|                                  | Topic                                     |
+|----------------------------------|-------------------------------------------|
+| ![Ingrid Daubechies](figures/Ingrid-Daubechies-wavelets.jpg)      | [dwt.2d](dwt-2d.html) |
+
+
+*****
+
+*efg*
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`                                                                                                         
