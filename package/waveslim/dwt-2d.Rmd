@@ -3,11 +3,13 @@ title: 'efg''s R Notes:  waveslim:  dwt.2d'
 output: html_document
 ---
 
-```{r}
+```{r, message=FALSE}
 library(waveslim)
 ```
 
 ## dwt.2d
+
+Perform a separable two-dimensional discrete wavelet transform (DWT) on a matrix of dyadic dimensions (powers of 2). 
 
 ### Xbox image
 
@@ -26,7 +28,10 @@ image(1:dim(xbox)[1], 1:dim(xbox)[2], xbox - idwt.2d(xbox.dwt),
 ```
 
 ### Ingrid Daubechies image
-```{r}
+
+The [Daubechies wavelets](http://en.wikipedia.org/wiki/Daubechies_wavelet) are based on the work of Ingrid Daubechies.
+
+```{r, fig.width=4}
 data(dau)
 dim(dau)
 hist(dau)
@@ -41,7 +46,7 @@ Explanation of above image:  [How to apply DWT (Discrete Wavelet Transform) to I
 
 **References**
 
-* St?phane Mallat.  *[A Wavelet Tour of Signal Processing](https://www.ceremade.dauphine.fr/~peyre/wavelet-tour/)*.  Academic Press, 2008.
+* Stephane Mallat.  *[A Wavelet Tour of Signal Processing](https://www.ceremade.dauphine.fr/~peyre/wavelet-tour/)*.  Academic Press, 2008.
 
 * Martin Vetterli and Jelena Kovacevic.  *[Wavelets and Subband Coding](http://waveletsandsubbandcoding.org/Repository/VetterliKovacevic95_Manuscript.pdf)*, Prentice Hall 1995.
 

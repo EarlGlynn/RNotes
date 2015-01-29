@@ -1,0 +1,83 @@
+---
+title: 'efg''s R Notes:  waveslim:  modwt.2d'
+output: html_document
+---
+
+```{r, message=FALSE}
+library(waveslim)
+```
+
+## dwt.2d
+
+Perform a separable two-dimensional maximal overlap discrete wavelet transform (MODWT) on a matrix of arbitrary dimensions. 
+
+### Xbox image
+
+```{r}
+data(xbox)
+xbox.modwt <- modwt.2d(xbox, "haar", 2)
+```
+
+#### Level 1 decomposition
+
+```{r}
+par(mfrow=c(2,2), pty="s", mar=c(4,4,2,2))
+image(xbox.modwt$LH1, col=rainbow(128), axes=FALSE, main="LH1")
+image(xbox.modwt$HH1, col=rainbow(128), axes=FALSE, main="HH1")
+frame()
+image(xbox.modwt$HL1, col=rainbow(128), axes=FALSE, main="HL1")
+```
+
+#### Level 2 decomposition
+
+```{r}
+par(mfrow=c(2,2), pty="s", mar=c(4,4,2,2))
+image(xbox.modwt$LH2, col=rainbow(128), axes=FALSE, main="LH2")
+image(xbox.modwt$HH2, col=rainbow(128), axes=FALSE, main="HH2")
+image(xbox.modwt$LL2, col=rainbow(128), axes=FALSE, main="LL2")
+image(xbox.modwt$HL2, col=rainbow(128), axes=FALSE, main="HL2")
+sum((xbox - imodwt.2d(xbox.modwt))^2)  
+```
+
+### Ingrid Daubechies image
+
+The [Daubechies wavelets](http://en.wikipedia.org/wiki/Daubechies_wavelet) are based on the work of Ingrid Daubechies.
+
+```{r}
+data(dau)
+par(mfrow=c(1,1), pty="s")
+image(dau, col=rainbow(128), axes=FALSE, main="Ingrid Daubechies")
+sum(dau^2)
+dau.modwt <- modwt.2d(dau, "d4", 2)
+```
+
+#### Level 1 decomposition
+
+```{r}
+par(mfrow=c(2,2), pty="s", mar=c(4,4,2,2))
+image(dau.modwt$LH1, col=rainbow(128), axes=FALSE, main="LH1")
+image(dau.modwt$HH1, col=rainbow(128), axes=FALSE, main="HH1")
+frame()
+image(dau.modwt$HL1, col=rainbow(128), axes=FALSE, main="HL1")
+```
+
+#### Level 2 decomposition
+
+```{r}
+par(mfrow=c(2,2), pty="s", mar=c(4,4,2,2))
+image(dau.modwt$LH2, col=rainbow(128), axes=FALSE, main="LH2")
+image(dau.modwt$HH2, col=rainbow(128), axes=FALSE, main="HH2")
+image(dau.modwt$LL2, col=rainbow(128), axes=FALSE, main="LL2")
+image(dau.modwt$HL2, col=rainbow(128), axes=FALSE, main="HL2")
+sum((dau - imodwt.2d(dau.modwt))^2)                         
+```
+
+*****
+
+```{r}
+packageVersion("waveslim")
+```       
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`                   
+                                                     

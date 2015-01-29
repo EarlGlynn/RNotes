@@ -9,9 +9,10 @@ output: html_document
 
 ## Topics
 
-|                                  | Topic                                     |
-|----------------------------------|-------------------------------------------|
-| ![Ingrid Daubechies](figures/Ingrid-Daubechies-wavelets.jpg)      | [dwt.2d](dwt-2d.html) |
+|                                                               | Topic                                     |
+|---------------------------------------------------------------|-------------------------------------------|
+| ![Ingrid Daubechies](figures/Ingrid-Daubechies-wavelets.jpg)  | [dwt.2d](dwt-2d.html)                     |
+| ![Ingrid Daubechies](figures/Ingrid-Daubechies-wavelets.jpg)  | [modwt.2d](modwt-2d.html)                     |
 
 
 *****
