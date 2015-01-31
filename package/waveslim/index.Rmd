@@ -11,8 +11,10 @@ output: html_document
 
 |                                                               | Topic                                     |
 |---------------------------------------------------------------|-------------------------------------------|
-| ![Ingrid Daubechies](figures/Ingrid-Daubechies-wavelets.jpg)  | [dwt.2d](dwt-2d.html)                     |
-| ![Ingrid Daubechies](figures/Ingrid-Daubechies-wavelets.jpg)  | [modwt.2d](modwt-2d.html)                     |
+| ![Denoise](figures/Ingrid-Daubechies-denoise-image-residual.jpg)  | [denoise image: denoise.dwt.2d, denoise.modwt.2d](denoise-image.html)   |
+| ![dwt.2d](figures/Ingrid-Daubechies-wavelets.jpg)          | [dwt.2d](dwt-2d.html)                     |
+| ![modwt.2d](figures/Ingrid-Daubechies-modwt-2d.jpg)        | [modwt.2d](modwt-2d.html)                 |
+| ![Wavelet filter](figures/wavelet-filter.jpg)              | [wavelet.filter](wavelet-filter.html)     |
 
 
 *****

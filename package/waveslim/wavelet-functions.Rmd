@@ -1,0 +1,57 @@
+---
+title: 'efg''s R Notes:  waveslim:  wavelet functions'
+output: html_document
+---
+
+```{r, message=FALSE}
+library(waveslim)
+```
+
+## wave.filter
+
+Convert name of wavelet filter to filter coefficients. 
+
+There are holes in the documentation of what the wavelet names mean:
+   
+|Name |Wavelet       |
+|-----|--------------|
+|bl14 |Best Localized|
+|bl20 |Best Localized|
+|bs3.1|Best Localized|
+|d4   |Daubechies    |
+|d6   |Daubechies    |
+|d8   |Daubechies    |
+|d16  |Daubechies    |
+|fk4  |              |
+|fk6  |              |
+|fk8  |              |
+|fk14 |              |
+|fk22 |              |
+|haar |Haar          |
+|la8  |Least Asymmetric|
+|la16 |Least Asymmetric|
+|la20 |Least Asymmetric|
+|mb4  |              |
+|mb8  |              |
+|mb16 |              |
+|mb24 |              |
+|w4   |              |
+
+```{r}
+d4  <- wave.filter("d8")
+str(d4)
+plot(d4$lpf, main="d8")
+grid()
+plot(d4$hpf, main="d8")
+grid()
+```
+
+
+*****
+
+```{r}
+packageVersion("waveslim")
+```       
+
+*efg*  
+`r format(Sys.time(), "%Y-%m-%d  %H%M")`      
