@@ -18,6 +18,7 @@ output: html_document
 |                                                                     | Package                                         | Description     | Source       |
 |---------------------------------------------------------------------|-------------------------------------------------|-----------------|--------------|
 |![EBImage](package/EBImage/figures/Cells.jpg)                        | [EBImage](package/EBImage/index.html)           |Image Processing | [Bioconductor](http://www.bioconductor.org/) |
+|![pca3d](package/pca3d/figures/pca3d.png)                            | [pca3d](package/pca3d/index.html)               |Show PCA analysis in 3D | [CRAN](http://cran.r-project.org/web/packages/) |
 |![RColorBrewer](package/RColorBrewer/figures/RColorBrewer.jpg)       | [RColorBrewer](package/RColorBrewer/index.html) |Color Palettes   | [CRAN](http://cran.r-project.org/web/packages/)         |
 |![waveslim](package/waveslim/figures/Ingrid-Daubechies-wavelets.jpg) | [waveslim](package/waveslim/index.html)         |Wavelets         | [CRAN](http://cran.r-project.org/web/packages/)         |
 
