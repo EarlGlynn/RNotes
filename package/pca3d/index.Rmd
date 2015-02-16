@@ -85,6 +85,13 @@ pca3d( pca, group= metabo[,1],
 ```
  
 ![Fancy 3D View](figures/pca3d-3D-fancy.png)
+
+## Another Example
+
+[Kaggle plankton classification training data](https://www.kaggle.com/c/datasciencebowl) can be represented with a matrix of ~3000 image features by 30,336 images.  Some of the 121 classes of plankton can be "seen" in a 3D PCA visualization.  See details on [this page](http://earlglynn.github.io/kaggle-plankton/).
+
+![PCA of Plankton classification training data](figures/plankton-wndchrm-features-PCA-view1.png)
+
  
 *****
 
