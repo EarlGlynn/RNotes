@@ -1,0 +1,146 @@
+---
+title: "efg's R Notes:  Non-Linear Curve Fit"
+output: html_document
+---
+
+*****
+
+```{r}
+library(minpack.lm)
+```
+
+
+## Non-Linear Curve Fit Example from nls.lm package
+
+Use Levenberg-Marquardt algorithm for non-linear curve fitting.
+
+### Background info
+
+* [Levenberg-Marquardt algorithm](http://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm)
+* [R package minpack.lm](http://cran.r-project.org/web/packages/minpack.lm/minpack.lm.pdf)
+* [MinPack info](http://www.netlib.org/minpack/ex/file06)
+
+
+### Created simulated data with noise
+
+Function to simulate data 
+```{r}
+f <- function(T, tau, N0, a, f0) 
+{
+  expr <- expression(N0 * exp(-T/tau) * (1 + a*cos(f0*T)))
+  eval(expr)
+}
+```
+
+Values over which to simulate data: 500 intervals between 0 and 8 
+```{r}
+T <- seq(0, 8, length=501)
+```
+
+Parameter values underlying simulated data  
+```{r}
+p <- c(tau = 2.2, N0 = 1000, a = 0.25, f0 = 8)
+```
+
+Define vector with simulated data to fit
+
+```{r}
+Ndet <- do.call("f", c(list(T = T), as.list(p)))
+```
+
+Add noise.  Set random number seed so example is reproducible.
+
+```{r}
+set.seed(17)
+N <- Ndet +  rnorm(length(Ndet), mean=Ndet, sd=.01*max(Ndet))
+head(N)
+```
+
+## Non-linear curve fit
+
+### Helper function for an analytical gradient. 
+
+Function *D* computes derivatives with respective to named parameter.
+
+$$ N_0 exp(-T/tau) (1 + a\cos(f0 T)) $$
+
+See info [about Hessian/Jacobian matrix](http://mathworld.wolfram.com/Hessian.html).
+
+```{r}
+j <- function(T, tau, N0, a, f0) 
+{
+  expr <- expression(N0*exp(-T/tau)*(1 + a*cos(f0*T)))
+  c(eval(D(expr, "tau")), 
+    eval(D(expr, "N0" )),
+    eval(D(expr, "a"  )), 
+    eval(D(expr, "f0" )))
+}
+```
+
+### Define a residual function 
+
+```{r}
+fcn <- function(p, T, N, fcall, jcall)
+    (N - do.call("fcall", c(list(T = T), as.list(p))))
+```
+
+### Define analytical expression for the gradient
+
+```{r}
+fcn.jac <- function(p, T, N, fcall, jcall) 
+{
+  -do.call("jcall", c(list(T = T), as.list(p)))
+}  
+```
+
+### Initial guess starting values 
+```{r}
+guess <- c(tau = 2.2, N0 = 1500, a = 0.25, f0 = 10)
+```
+
+### Non-linear curve fit
+```{r}
+out <- nls.lm(par = guess, fn = fcn, jac = fcn.jac,
+              fcall = f, jcall = j,
+              T = T, N = N, control = nls.lm.control(nprint=1))
+```
+
+### get the fitted values 
+```{r}
+N1 <- do.call("f", c(list(T = T), out$par))  
+```
+
+### Plots
+
+Plot the original data with fitted solution, along with residuals.
+
+```{r datatofit, fig.width=6, fig.height=6}
+plot(T, N, cex = 0.5, main="Simulated Data to Fit")
+grid()
+lines(T, N1, col="blue", lwd=2)   # Fitted solution
+```
+
+Add a plot of the log residual sum of squares as it is made to decrease each iteration; note that the RSS at the starting parameter values is also stored
+
+```{r residuals, fig.width=6, fig.height=6}
+plot(1:(out$niter+1), log(out$rsstrace), type="b",
+     main="log residual sum of squares vs. iteration number",
+     xlab="iteration", 
+     ylab="log residual sum of squares", pch=21) 
+grid()
+```
+
+### Information regarding standard errors
+```{r, comment=NA}
+summary(out) 
+```
+
+*****
+```{r}
+packageVersion("minpack.lm")
+```
+
+*efg*
+
+`r format(Sys.time(), "%Y-%m-%d %H%M")`
+
