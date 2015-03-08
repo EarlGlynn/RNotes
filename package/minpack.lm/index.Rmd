@@ -1,5 +1,5 @@
 ---
-title: "efg's R Notes:  Non-Linear Curve Fit"
+title: "efg's R Notes:  minpack.lm:  Non-Linear Curve Fit"
 output: html_document
 ---
 

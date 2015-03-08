@@ -4,6 +4,8 @@ author: "Earl F Glynn"
 output: html_document
 ---
 
+**[RNotes](../../index.html) | [gplots](index.html)**     
+
 *****
 
 ```{r}
@@ -184,24 +186,6 @@ hM
 heatmap.2(cU, Rowv=FALSE, symm=TRUE, col=rev(heat.colors(16)),
             distfun=function(c) as.dist(1 - c), trace="none",
             cellnote=hM)
-
-## genechip data examples
-## Not run:
-#library(affy)
-#data(SpikeIn)
-#pms <- SpikeIn@pm
-
-# just the data, scaled across rows
-#heatmap.2(pms, col=rev(heat.colors(16)), main="SpikeIn@pm",
-#             xlab="Relative Concentration", ylab="Probeset",
-#             scale="row")
-
-# fold change vs "12.50" sample
-#data <- pms / pms[, "12.50"]
-#data <- ifelse(data>1, data, -1/data)
-#heatmap.2(data, breaks=16, col=redgreen, tracecol="blue",
-#              main="SpikeIn@pm Fold Changes\nrelative to 12.50 sample",
-#              xlab="Relative Concentration", ylab="Probeset")
 ```
 
 
