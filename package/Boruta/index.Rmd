@@ -1,0 +1,135 @@
+---
+title: "efg's R Notes:  Boruta Package"
+output: html_document
+---
+
+**[RNotes](../../index.html)**     
+
+Miron B. Kursa, Witold R. Rudnicki,  [Feature Selection with the Boruta Package](http://www.jstatsoft.org/v36/i11/), *Journal of Statistical Software*, Vol. 36, Issue 11, Sept 2010.
+
+*****   
+
+`r format(Sys.time(), "%Y-%m-%d %H%M")`
+
+```{r, comment=NA}
+library(Boruta)
+```
+
+## Iris dataset
+
+```{r, comment=NA}
+dim(iris)
+head(iris)
+```
+
+### Takes some time, so be patient
+```{r, comment=NA}
+Bor.iris <- Boruta(Species~.,data=iris,doTrace=2)
+print(Bor.iris);
+print(getSelectedAttributes(Bor.iris))
+```
+
+### Add some nonsense attributes to iris dataset by shuffling original attributes
+
+```{r, comment=NA}
+set.seed(777);
+iris.extended <- data.frame(iris,apply(iris[,-5],2,sample))
+names(iris.extended)[6:9] <- paste("Nonsense",1:4,sep="")
+
+dim(iris.extended)
+head(iris.extended)
+```
+
+### Run Boruta on this data
+
+```{r, comment=NA}
+Boruta.iris.extended <- Boruta(Species~., data=iris.extended, doTrace=2)
+```
+
+### Nonsense attributes should be rejected
+```{r, comment=NA}
+print(Boruta.iris.extended)
+```
+
+### Boruta using rFerns' importance
+```{r, comment=NA}
+Boruta.ferns.irisE <- Boruta(Species~., data=iris.extended, getImp=getImpFerns)
+print(Boruta.ferns.irisE)
+```
+
+## Ozone data from mlbench package
+
+```{r, comment=NA}
+library(mlbench)
+data(Ozone)
+ozo <- na.omit(Ozone)
+dim(ozo)
+head(ozo)
+```
+
+### Takes some time, so be patient
+
+```{r, comment=NA}
+Bor.ozo <- Boruta(V4~., data=ozo, doTrace=2)
+cat('Random forest run on all attributes:\n')
+
+print(randomForest(V4~., data=ozo))
+cat('Random forest run only on confirmed attributes:\n')
+
+print(randomForest(ozo[,getSelectedAttributes(Bor.ozo)],ozo$V4))
+```
+
+## Boruta on the HouseVotes84 data from mlbench
+
+```{r, comment=NA}
+library(mlbench)
+data(HouseVotes84)
+
+hvo <- na.omit(HouseVotes84)
+dim(hvo)
+head(hvo)
+```
+
+### Takes some time, so be patient
+
+```{r, comment=NA}
+Bor.hvo <- Boruta(Class~., data=hvo, doTrace=2)
+print(Bor.hvo)
+plot(Bor.hvo, las=2, cex.axis=0.75)
+```
+
+## Boruta on the Sonar data from mlbench
+
+```{r, comment=NA}
+library(mlbench)
+data(Sonar)
+```
+
+### Takes some time, so be patient
+
+```{r, comment=NA}
+Bor.son <- Boruta(Class~.,data=Sonar,doTrace=2)
+print(Bor.son)
+plotImpHistory(Bor.son)
+
+stats <- attStats(Bor.son)
+print(stats)
+plot(normHits~meanZ, col=stats$decision, data=stats)
+```
+
+### Shows important bands
+
+```{r, comment=NA, plot.width=7}
+plot(Bor.son,sort=FALSE, las=2, cex.axis=0.75)
+```
+
+*****  
+
+```{r}
+packageVersion("Boruta")
+```
+
+*efg*
+
+`r format(Sys.time(), "%Y-%m-%d %H%M")`
+                                                     
