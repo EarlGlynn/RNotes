@@ -23,6 +23,7 @@ head(iris)
 ```
 
 ### Takes some time, so be patient
+
 ```{r, comment=NA}
 Bor.iris <- Boruta(Species~.,data=iris,doTrace=2)
 print(Bor.iris);
@@ -47,11 +48,13 @@ Boruta.iris.extended <- Boruta(Species~., data=iris.extended, doTrace=2)
 ```
 
 ### Nonsense attributes should be rejected
+
 ```{r, comment=NA}
 print(Boruta.iris.extended)
 ```
 
 ### Boruta using rFerns' importance
+
 ```{r, comment=NA}
 Boruta.ferns.irisE <- Boruta(Species~., data=iris.extended, getImp=getImpFerns)
 print(Boruta.ferns.irisE)
@@ -70,13 +73,18 @@ head(ozo)
 ### Takes some time, so be patient
 
 ```{r, comment=NA}
-Bor.ozo <- Boruta(V4~., data=ozo, doTrace=2)
+Boruta.ozone <- Boruta(V4~., data=ozo, doTrace=2)
 cat('Random forest run on all attributes:\n')
+
+attStats(Boruta.ozone)
+getSelectedAttributes(Boruta.ozone)
+
+plot(Boruta.ozone, las=2, cex.axis=0.75)
 
 print(randomForest(V4~., data=ozo))
 cat('Random forest run only on confirmed attributes:\n')
 
-print(randomForest(ozo[,getSelectedAttributes(Bor.ozo)],ozo$V4))
+print(randomForest(ozo[,getSelectedAttributes(Boruta.ozone)],ozo$V4))
 ```
 
 ## Boruta on the HouseVotes84 data from mlbench
